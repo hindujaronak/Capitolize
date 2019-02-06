@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AppNavbar from './components/AppNavbar';
-import ShoppingList from'./components/ShoppingList';
+// import './views/LandingPage/LandingPage';
+import LandingPage from './views/LandingPage/LandingPage';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <AppNavbar />
-        <ShoppingList />
+        <LandingPage />
       </div>
     );
   }
