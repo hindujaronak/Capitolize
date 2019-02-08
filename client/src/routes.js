@@ -13,6 +13,7 @@ import ComponentsOverview from "./views/ComponentsOverview";
 import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
 import Login from "./views/Login";
+import Register from "./views/Register";
 
 export default [
   {
@@ -56,12 +57,14 @@ export default [
     layout: DefaultLayout,
     component: BlogPosts
   },
-
   {
     path: "/login",
     layout: DefaultLayout,
     component: Login
+  },
+  {
+    path: "/register",
+    layout: DefaultLayout,
+    component: Register
   }
-
-
 ];
