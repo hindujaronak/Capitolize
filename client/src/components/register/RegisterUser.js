@@ -139,7 +139,7 @@ UserAccountDetails.propTypes = {
 };
 
 UserAccountDetails.defaultProps = {
-  title: "Register Details"
+  title: "Register User"
 };
 
 export default UserAccountDetails;
