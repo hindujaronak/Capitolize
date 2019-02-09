@@ -7,12 +7,7 @@ export default function() {
       htmlAfter: ""
     },
     {
-      title: "Blog Posts",
-      htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "/blog-posts",
-    },
-    {
-      title: "Add New Post",
+      title: "Add New Idea",
       htmlBefore: '<i class="material-icons">note_add</i>',
       to: "/add-new-post",
     },
@@ -30,6 +25,11 @@ export default function() {
       title: "User Profile",
       htmlBefore: '<i class="material-icons">person</i>',
       to: "/user-profile-lite",
+    },
+    {
+      title: "Blog Posts",
+      htmlBefore: '<i class="material-icons">vertical_split</i>',
+      to: "/blog-posts",
     },
     {
       title: "Errors",

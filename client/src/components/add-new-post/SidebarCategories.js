@@ -22,7 +22,7 @@ const SidebarCategories = ({ title }) => (
       <ListGroup flush>
         <ListGroupItem className="px-3 pb-2">
           <FormCheckbox className="mb-1" value="uncategorized" defaultChecked>
-            Uncategorized
+            Finance
           </FormCheckbox>
           <FormCheckbox className="mb-1" value="design" defaultChecked>
             Design

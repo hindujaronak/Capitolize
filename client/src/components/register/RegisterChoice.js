@@ -24,27 +24,20 @@ const UserAccountDetails = ({ title }) => (
             <Form>
               <Row form>
                 {/* First Name */}
-                <Col md="6" className="form-group">
-                    <h2><br></br>Who are you?</h2>
-                    <h4>I want to register as ....</h4>
+                <Col md="12" className="form-group" align="center">
+                    <h3>Who are you?</h3>
+                    <h5>I want to register as ....<br></br></h5>
                 </Col>
-                <Col md="6" className="form-group">
-                    <Row>
-                        <Col md="6"><Button theme="accent">A Startup</Button></Col>
-                    </Row>
-                    <Row>
-                        <Progress style={{ height: "5px" }} value={50} className="mb-3" />
-                    </Row>
-                    <Row>
-                        <Col md="6"><Button theme="accent">A Bank</Button></Col>
-                    </Row>
-                    <Row>
-                        <Progress style={{ height: "5px" }} value={50} className="mb-3" />
-                    </Row>
-                    <Row>
-                        <Col md="6"><Button theme="accent">An Official</Button></Col>
-                    </Row>
-                    
+              </Row>
+              <Row form>
+                <Col md="4" className="form-group" align="right">
+                  <Button theme="accent">A Startup</Button>
+                </Col>
+                <Col md="4" className="form-group" align="center">
+                  <Button theme="accent">A Bank</Button>
+                </Col>
+                <Col md="4" className="form-group" align="left">
+                  <Button theme="accent">An Official</Button>
                 </Col>
               </Row>
             </Form>
