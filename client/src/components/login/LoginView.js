@@ -66,19 +66,12 @@ const UserAccountDetails = ({ title }) => (
                 <Row>
                 {/* Confirm Password */}
                 <Col md="6" className="form-group">
-                  <label htmlFor="fePassword">Confirm Password</label>
+                  <label htmlFor="fePassword">Forgot Password?</label>
                   
-                  <FormGroup>
-                   <InputGroup className="mb-3">
-                        <InputGroupAddon type="prepend">
-                            <InputGroupText></InputGroupText>
-                        </InputGroupAddon>
-                        <FormInput type="password"
-                        id="fePassword"
-                        placeholder="Confirm Password"
-                         />
-                    </InputGroup>
-                </FormGroup>
+                  <br></br>
+                  <a href="#">Click here to reset password</a>
+                  <br></br>
+
                 </Col>
               </Row>
               
