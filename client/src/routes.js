@@ -33,7 +33,7 @@ export default [
     component: UserProfileLite
   },
   {
-    path: "/add-new-post",
+    path: "/add-new-idea",
     layout: DefaultLayout,
     component: AddNewPost
   },
