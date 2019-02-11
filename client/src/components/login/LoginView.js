@@ -69,7 +69,7 @@ const UserAccountDetails = ({ title }) => (
                   <label htmlFor="fePassword">Forgot Password?</label>
                   
                   <br></br>
-                  <a href="#">Click here to reset password</a>
+                  <a href="/login">Click here to reset password</a>
                   <br></br>
 
                 </Col>
