@@ -47,18 +47,13 @@ const BlogOverview = ({ smallStats }) => (
         <UsersByDevice />
       </Col>
 
-      {/* New Draft */}
-      <Col lg="4" md="6" sm="12" className="mb-4">
-        <NewDraft />
-      </Col>
-
       {/* Discussions */}
-      <Col lg="5" md="12" sm="12" className="mb-4">
+      <Col lg="8" md="12" sm="12" className="mb-4">
         <Discussions />
       </Col>
 
       {/* Top Referrals */}
-      <Col lg="3" md="12" sm="12" className="mb-4">
+      <Col lg="4" md="12" sm="12" className="mb-4">
         <TopReferrals />
       </Col>
     </Row>
@@ -75,7 +70,7 @@ BlogOverview.propTypes = {
 BlogOverview.defaultProps = {
   smallStats: [
     {
-      label: "Posts",
+      label: "Page Hits",
       value: "2,390",
       percentage: "4.7%",
       increase: true,
@@ -93,7 +88,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "Pages",
+      label: "Ideas",
       value: "182",
       percentage: "12.4",
       increase: true,
@@ -111,7 +106,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "Comments",
+      label: "Registrations",
       value: "8,147",
       percentage: "3.8%",
       increase: false,
@@ -130,7 +125,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "New Customers",
+      label: "New Users",
       value: "29",
       percentage: "2.71%",
       increase: false,
@@ -149,7 +144,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "Subscribers",
+      label: "Contributions",
       value: "17,281",
       percentage: "2.4%",
       increase: false,
