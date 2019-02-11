@@ -14,7 +14,7 @@ const User = require('../../models/User');
 
 router.post('/register', (req, res) => {
     const newUser = new User({
-        email_id: req.body.username,
+        email_id: req.body.email_id,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         mobile_number: req.body.mobile_number,
@@ -23,7 +23,10 @@ router.post('/register', (req, res) => {
         state: req.body.state,
         country: req.body.country,
         pincode: req.body.pincode,
-        description: req.body.description        
+        description: req.body.description,
+        createdAt: req.body.createdAt,
+        updatedAt: req.body.updatedAt,
+        accountType: req.body.accountType        
     });    
 
     newUser.save().then(user => res.json(user));
