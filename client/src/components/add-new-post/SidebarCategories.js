@@ -9,9 +9,12 @@ import {
   Button,
   InputGroup,
   InputGroupAddon,
-  FormCheckbox,
+  label,
   FormInput
+  
+  
 } from "shards-react";
+
 
 const SidebarCategories = ({ title }) => (
   <Card small className="mb-3">
@@ -19,6 +22,8 @@ const SidebarCategories = ({ title }) => (
       <h6 className="m-0">{title}</h6>
     </CardHeader>
     <CardBody className="p-0">
+
+
       <ListGroup flush>
         <ListGroupItem className="px-3 pb-2">
           <FormCheckbox className="mb-1" value="Automobile" >
