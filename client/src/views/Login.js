@@ -10,6 +10,7 @@ const UserProfileLite = () => (
       <PageTitle title="Login" subtitle="Identify Yourself" md="12" className="ml-sm-auto mr-sm-auto" />
     </Row>
     <Row>
+      <Col lg="3"></Col>
       <Col lg="6">
         <LoginView />
       </Col>
