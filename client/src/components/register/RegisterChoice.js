@@ -34,10 +34,10 @@ const UserAccountDetails = ({ title }) => (
                   <Button theme="accent">A Startup</Button>
                 </Col>
                 <Col md="4" className="form-group" align="center">
-                  <Button theme="accent">A Bank</Button>
+                  <Button theme="accent">A Official</Button>
                 </Col>
                 <Col md="4" className="form-group" align="left">
-                  <Button theme="accent">An Official</Button>
+                  <Button theme="accent">A Corporation</Button>
                 </Col>
               </Row>
             </Form>

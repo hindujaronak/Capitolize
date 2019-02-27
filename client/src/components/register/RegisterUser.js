@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import SocialMediaIcons from 'react-social-media-icons';
 import {
   Card,
   CardHeader,
@@ -18,6 +19,8 @@ import {
   InputGroupText
 } from "shards-react";
 
+
+
 const UserAccountDetails = ({ title }) => (
   <Card small className="mb-4">
     <CardHeader className="border-bottom">
@@ -28,6 +31,9 @@ const UserAccountDetails = ({ title }) => (
         <Row>
           <Col>
             <Form>
+              <Row>
+                
+              </Row>
               <Row form>
                 {/* First Name */}
                 <Col md="6" className="form-group">
@@ -122,7 +128,7 @@ const UserAccountDetails = ({ title }) => (
                   <FormTextarea id="feDescription" rows="5" />
                 </Col>
               </Row>
-              <Button theme="accent">Register Accountt</Button>
+              <Button theme="accent">Register Account</Button>
             </Form>
           </Col>
         </Row>
@@ -143,3 +149,4 @@ UserAccountDetails.defaultProps = {
 };
 
 export default UserAccountDetails;
+
