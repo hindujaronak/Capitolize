@@ -10,8 +10,8 @@ import {
   InputGroup,
   InputGroupAddon,
   label,
-  FormInput
-  
+  FormInput,
+  FormCheckbox
   
 } from "shards-react";
 
