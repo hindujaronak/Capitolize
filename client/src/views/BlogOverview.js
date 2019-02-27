@@ -214,10 +214,10 @@ BlogOverview.defaultProps = {
   ],
   PostsListOne: [
     {
-      backgroundImage: require("../images/content-management/1.jpeg"),
-      category: "Business",
+      backgroundImage: require("../images/Logo3.png"),
+      category: "Aviation",
       categoryTheme: "dark",
-      author: "Anna Kunis",
+      author: "Abdul Rashid ",
       authorAvatar: require("../images/avatars/1.jpg"),
       title: "Conduct at an replied removal an amongst",
       body:
@@ -225,10 +225,10 @@ BlogOverview.defaultProps = {
       date: "28 February 2019"
     },
     {
-      backgroundImage: require("../images/content-management/2.jpeg"),
-      category: "Travel",
+      backgroundImage: require("../images/Logo5.png"),
+      category: "Automobile",
       categoryTheme: "info",
-      author: "James Jamerson",
+      author: "Hassan Izz-Al-Din",
       authorAvatar: require("../images/avatars/2.jpg"),
       title: "Off tears are day blind smile alone had ready",
       body:
@@ -236,10 +236,10 @@ BlogOverview.defaultProps = {
       date: "29 February 2019"
     },
     {
-      backgroundImage: require("../images/content-management/3.jpeg"),
-      category: "Technology",
+      backgroundImage: require("../images/Logo3.png"),
+      category: "Chemicals",
       categoryTheme: "royal-blue",
-      author: "Jimmy Jackson",
+      author: "Osama bin Laden",
       authorAvatar: require("../images/avatars/2.jpg"),
       title: "Difficult in delivered extensive at direction",
       body:
@@ -247,10 +247,10 @@ BlogOverview.defaultProps = {
       date: "29 February 2019"
     },
     {
-      backgroundImage: require("../images/content-management/4.jpeg"),
-      category: "Business",
+      backgroundImage: require("../images/Logo5.png"),
+      category:"Defence",
       categoryTheme: "warning",
-      author: "John James",
+      author: "Khalid Sheikh Mohammed",
       authorAvatar: require("../images/avatars/3.jpg"),
       title: "It so numerous if he may outlived disposal",
       body:
