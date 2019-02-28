@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema; //new schema
+var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const FundraiserSchema= new Schema({
 
-//Create schema
-const FundraiserSchema = new Schema({
     title: {
         type : String,
         required : true,
@@ -12,29 +11,18 @@ const FundraiserSchema = new Schema({
         type : String,
         required : true
     },
-    category: {
-        type: String,
+    sector: {
+        type: Number,
         required: true
     },
-    city: {
-        type : String,
-        required : true
-    },
-    state: {
-        type : String,
-        required : true
-    },
-    country: {
-        type : String,
-        required : true
-    },
-    pincode: {
-        type : Number,
-        required : true
-    },
+    uploaded_image: {
+        type : String
+    },   
     createdAt: Date,
     updatedAt: Date,
     accountType: Number
 });
+ 
+//Create schema
 
-module.exports = mongoose.model('Fundraiser',FundraiserSchema); 
+module.exports = mongoose.model('fundraiser', FundraiserSchema); 

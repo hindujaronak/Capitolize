@@ -8,6 +8,7 @@ const app = express();
 
 //BodyParser Middleware
 app.use(bodyParser.json());
+// app.use(express.static(./uploads, 'public'));
  
 // DB config
 const db = require('./config/keys.js').mongoURI;
