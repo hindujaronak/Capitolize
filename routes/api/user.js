@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
+const encryptPassword = require('encrypt-password');
+
 //User Model
 
-const User = require('../../models/User');
+const User = require('../../models/UserSchema');
 
 
 // router.get('/home', (req, res) => {
@@ -13,45 +15,153 @@ const User = require('../../models/User');
 
 
 router.post('/register', (req, res) => {
-    const newUser = new User({
-        email_id: req.body.email_id,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        mobile_number: req.body.mobile_number,
-        password: req.body.password,
-        city: req.body.city,
-        state: req.body.state,
-        country: req.body.country,
-        pincode: req.body.pincode,
-        description: req.body.description,
-        createdAt: req.body.createdAt,
-        updatedAt: req.body.updatedAt,
-        accountType: req.body.accountType        
-    });    
+    var { body } = req;
+    var {
+        firstname,
+        lastname,
+        email_id,
+        password,
+        mobile_number,
+        city,
+        state,
+        country,
+        pincode,
+        description,
+        createdAt,
+        updatedAt,
+        accountType
+    } = body;
 
-    newUser.save().then(user => res.json(user));
+    if(!firstname){
+        return res.send({
+            success: false,
+            message: 'Error: First Name cannot be blank.' 
+        });
+    }
+     
+    if(!lastname){
+        return res.send({
+            success: false,
+            message: 'Error: Last Name cannot be blank.' 
+        });
+    }
+    
+    if(!email_id){
+        return res.send({
+            success: false,
+            message: 'Error: Email cannot be blank.' 
+        });
+    }
+    
+    if(!password){
+        return res.send({
+            success: false,
+            message: 'Error: Password cannot be blank.' 
+        });
+    }
+    
+    if(!mobile_number){
+        return res.send({
+            success: false,
+            message: 'Error: Mobile Number cannot be blank.' 
+        });
+    }
+    
+    if(!city){
+        return res.send({
+            success: false,
+            message: 'Error: City cannot be blank.' 
+        });
+    }
+    
+    if(!state){
+        return res.send({
+            success: false,
+            message: 'Error: State cannot be blank.' 
+        });
+    }
+    
+    if(!country){
+        return res.send({
+            success: false,
+            message: 'Error: Country cannot be blank.' 
+        });
+    }
+
+    email_id = email_id.toLowerCase();
+
+    User.find({
+        email_id: email_id
+    }, (err, previousUsers) => {
+        if(err) {
+            return res.send({
+                success: false,
+                message: 'Error.' 
+            });
+        } else if (previousUsers.length > 0){
+            return res.send({
+                success: false,
+                message: 'Email already exists.' 
+            });
+        }
+    });
+
+    //Save newUser
+    const newUser = new User();
+        newUser.email_id = email_id;
+        newUser.firstname = firstname;
+        newUser.lastname = lastname;
+        newUser.mobile_number = mobile_number;
+        newUser.password = encryptPassword('password', {
+            min: 8,
+            max: 24,
+            pattern: /^\w{8,24}$/,
+            signature: 'signature',
+            });
+        newUser.city = city;
+        newUser.state = state;
+        newUser.country = country;
+        newUser.pincode = pincode;
+        newUser.description = description;
+        newUser.createdAt = createdAt;
+        newUser.updatedAt = updatedAt;
+        newUser.accountType = accountType;        
+    
+
+     newUser.save((err, user) => {
+         if(err){
+            return res.send({
+                error: console.log(err),
+                success: false,
+                message: 'Server Error.' 
+            });
+         } else {
+            return res.send({
+                success: true,
+                message: 'Signed up.' 
+            });
+         }
+     });
 }); // that slash represents the api/user
 
 
-// @route api/user:id
-// @access public/
 
-router.post('/login', (req, res) => {
-    var mobile_number = req.body.mobile_number;
-    var password = req.body.password;
+// router.post('/login', (req, res) => {
+//     var mobile_number = req.body.mobile_number;
+//     var password = req.body.password;
 
-    User.findOne({mobile_number : mobile_number, password: password}, function(err, user){
-        if(err){
-            console.log(err);
-            return res.status(500).send();
-        }
-        if(!err){
-            return res.status(200).send();
-        }
-        return res.status(404).send();
+//     User.findOne({mobile_number : mobile_number, password: password}, function(err, user){
+//         if(err){
+//             console.log(err);
+//             return res.status(500).send();
+//         }
+//         if(!err){
+//             return res.status(200).send();
+//         }
+//         return res.status(404).send();
 
-    })
+//     })
         
-});
+// });
 
 module.exports = router;

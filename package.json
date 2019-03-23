@@ -7,7 +7,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev":  "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -20,10 +20,13 @@
   },
   "homepage": "https://github.com/hindujaronak/Capitolize#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
+    "encrypt-password": "^1.0.1",
     "express": "^4.16.4",
-    "mongoose": "^5.4.11"
+    "mongoose": "^5.4.11",
+    "npm": "^6.7.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
