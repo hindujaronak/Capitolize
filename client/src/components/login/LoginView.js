@@ -18,7 +18,7 @@ import {
 } from "shards-react";
 
 const UserAccountDetails = ({ title }) => (
-  <Card small className="mb-4">
+  <Card small className="-3">
     <CardHeader className="border-bottom">
       <h6 className="m-0">{title}</h6>
     </CardHeader>
@@ -33,7 +33,7 @@ const UserAccountDetails = ({ title }) => (
                 <Col md="6" className="form-group">
                   <label htmlFor="feLastName">Email id</label>
                 <FormGroup>
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-2 ">
                         <InputGroupAddon type="prepend">
                             <InputGroupText></InputGroupText>
                         </InputGroupAddon>
