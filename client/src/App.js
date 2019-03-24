@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Provider } from 'react-redux';
-import store from './store';
 import routes from "./routes";
 import withTracker from "./withTracker";
 
@@ -9,7 +7,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./shards-dashboard/styles/shards-dashboards.1.1.0.min.css";
 
 export default () => (
-  <Provider store={store}>
     <Router basename={process.env.REACT_APP_BASENAME || ""}>
       <div>
         {routes.map((route, index) => {
@@ -30,5 +27,4 @@ export default () => (
         })}
       </div>
     </Router>
-  </Provider>
 );

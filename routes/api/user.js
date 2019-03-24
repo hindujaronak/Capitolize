@@ -146,22 +146,38 @@ router.post('/register', (req, res) => {
 
 
 
-// router.post('/login', (req, res) => {
-//     var mobile_number = req.body.mobile_number;
-//     var password = req.body.password;
+router.post('/login', (req, res) => {
 
-//     User.findOne({mobile_number : mobile_number, password: password}, function(err, user){
-//         if(err){
-//             console.log(err);
-//             return res.status(500).send();
-//         }
-//         if(!err){
-//             return res.status(200).send();
-//         }
-//         return res.status(404).send();
-
-//     })
-        
-// });
+    // User.findOne({email_id : email_id, password: password}, function(err, user){
+    //     if(err){
+    //         console.log(err);
+    //         return res.status(500).send({
+    //             error: "User not Found"
+    //         });
+    //     }
+    //     if(!err){
+    //         return res.status(200).send({
+    //             error: "Logged in successfully!"
+    //         });
+    //     }
+    //     return res.status(404).send();
+    // })
+    
+    User.findOne({
+        "email_id": req.body.email_id, "password": req.body.password
+    }, (err, user) => {
+            if (err){
+                return res.status('401').json({
+                    error: "User not found"
+                })
+            }
+            if (!err) {
+                return res.status('200').send({
+                    error: "Logged in successfully!"
+                })
+            }
+        }
+    )
+})
 
 module.exports = router;
