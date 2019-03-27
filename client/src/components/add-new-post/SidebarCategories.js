@@ -1,4 +1,5 @@
-import React from "react";
+import React , {Component} from "react";
+// import React from "react";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -14,7 +15,6 @@ import {
   FormCheckbox
   
 } from "shards-react";
-
 
 const SidebarCategories = ({ title }) => (
   <Card small className="mb-3">
@@ -101,7 +101,7 @@ const SidebarCategories = ({ title }) => (
       </ListGroup>
     </CardBody>
   </Card>
-);
+);  
 
 SidebarCategories.propTypes = {
   /**
