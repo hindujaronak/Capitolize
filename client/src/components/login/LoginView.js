@@ -27,7 +27,8 @@ class UserAccountDetails extends Component{
       email: '',
       password: '',
       error: '',
-      redirectToDashboard: false
+      redirectToDashboard: false,
+      isLoggedIn: false
     }
   }
 
@@ -54,7 +55,7 @@ class UserAccountDetails extends Component{
         return this.setState({ error: true });
       }
       else{
-        this.setState({redirectToDashboard: true});
+        this.setState({redirectToDashboard: true, isLoggedIn: true});
       } 
       // history.push('/blog-overview');
     });
@@ -64,7 +65,7 @@ class UserAccountDetails extends Component{
     this.setState({[name]: event.target.value})
   }
   render(){
-    if (this.state.redirectToDashboard === true) {
+    if (this.state.redirectToDashboard === true && this.state.isLoggedIn === true) {
       return <Redirect to='/blog-overview' />
     }
     // const {redirectToDashboard} = this.state
