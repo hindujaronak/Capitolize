@@ -1,5 +1,6 @@
 const login = (user) => {
-  return fetch('api/user/login', {
+  // console.log(user)
+  return fetch('http://localhost:5000/api/user/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -9,7 +10,7 @@ const login = (user) => {
       body: JSON.stringify(user)
     })
     .then((response) => {
-      return response.json()
+      return "res"
     }).catch((err) => console.log(err))
 }
 export {

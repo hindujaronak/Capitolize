@@ -112,12 +112,13 @@ router.post('/register', (req, res) => {
         newUser.firstname = firstname;
         newUser.lastname = lastname;
         newUser.mobile_number = mobile_number;
-        newUser.password = encryptPassword('password', {
-            min: 8,
-            max: 24,
-            pattern: /^\w{8,24}$/,
-            signature: 'signature',
-            });
+        // newUser.password = encryptPassword('password', {
+        //     min: 8,
+        //     max: 24,
+        //     pattern: /^\w{8,24}$/,
+        //     signature: 'signature',
+        //     });
+        newUser.password = password;
         newUser.city = city;
         newUser.state = state;
         newUser.country = country;

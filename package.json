@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/hindujaronak/Capitolize#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
     "encrypt-password": "^1.0.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.11",

@@ -4,10 +4,13 @@ const bodyParser = require('body-parser');
 
 const user = require('./routes/api/user');
 const fundraiser = require('./routes/api/fundraiser');
+var cors = require('cors');
+
 const app = express();
 
 //BodyParser Middleware
 app.use(bodyParser.json());
+app.use(cors());
 // app.use(express.static(./uploads, 'public'));
  
 // DB config
