@@ -4,7 +4,7 @@ import { Container, Row, Col } from "shards-react";
 import PageTitle from "../components/common/PageTitle";
 import Editor from "../components/add-new-post/Editor";
 import SidebarActions from "../components/add-new-post/SidebarActions";
-import SidebarCategories from "../components/add-new-post/SidebarCategories";
+// import SidebarCategories from "../components/add-new-post/SidebarCategories";
 
 const AddNewPost = () => (
   <Container fluid className="main-content-container px-4 pb-4">
@@ -15,14 +15,14 @@ const AddNewPost = () => (
 
     <Row>
       {/* Editor */}
-      <Col lg="6" md="12">
+      <Col lg="12" md="12">
         <Editor />
       </Col>
 
       {/* Sidebar Widgets */}
-      <Col lg="6" md="12">
+      {/* <Col lg="6" md="12">
         <SidebarCategories />
-      </Col>
+      </Col> */}
     </Row>
   </Container>
 );

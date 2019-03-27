@@ -1,5 +1,4 @@
-import React , {Component} from "react";
-// import React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import {
   Card,
@@ -10,11 +9,11 @@ import {
   Button,
   InputGroup,
   InputGroupAddon,
-  label,
-  FormInput,
+    FormInput,
   FormCheckbox
   
 } from "shards-react";
+
 
 const SidebarCategories = ({ title }) => (
   <Card small className="mb-3">
@@ -86,8 +85,10 @@ const SidebarCategories = ({ title }) => (
           <FormCheckbox className="mb-1" value="Other sectors" >
             Other sectors
           </FormCheckbox>
+          
         </ListGroupItem>
-
+        <br></br>
+        <br></br>
         <ListGroupItem className="d-flex px-3">
           <InputGroup className="ml-auto">
             <FormInput placeholder="New category" />
@@ -101,7 +102,7 @@ const SidebarCategories = ({ title }) => (
       </ListGroup>
     </CardBody>
   </Card>
-);  
+);
 
 SidebarCategories.propTypes = {
   /**
