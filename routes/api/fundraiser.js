@@ -34,5 +34,27 @@ router.post('/addFundraiser', upload.single('image'), (req,res) => {
 
     newFundraiser.save().then(fundraiser => res.json(fundraiser));
 }); // that slash represents the api/user
+
+router.get('/allFundraisers', getAllFundraisers);
+
+function getAllFundraisers(req, res, next){
+    Fundraiser.find({}, 
+        err => {
+            if(err) {
+                return res.send(
+                    {
+                        success: false,
+                        message: 'Couldnt get fundrasier data'
+                    }
+                )
+            }
+        }, 
+        docs);
+
+        return res.send({
+            success: true,
+            message:'Finally working'
+        });
+}
  
 module.exports = router;
