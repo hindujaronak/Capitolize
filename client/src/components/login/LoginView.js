@@ -27,7 +27,8 @@ class UserAccountDetails extends Component{
       email: '',
       password: '',
       error: '',
-      redirectToDashboard: false
+      redirectToDashboard: false,
+      isLoggedIn: false
     }
   }
 
@@ -37,34 +38,37 @@ class UserAccountDetails extends Component{
       password: this.state.password || undefined
     }
 
+    axios
+      .get('http://localhost:5000/api/user/login')
+      .then(response=>console.log(response)) 
+      // {
+      //   email_id: this.state.email,
+      //   password: this.state.password,
+      // })
 
-    login(user).then((data) => {
-      this.setState({ error: false });
-      // console.log(data)
-      const { email, password} = this.state;
-      // const email = this.state;  
-      // if (!(email === 'anuja@gmail.com')) {
-      axios
-        .post('http://localhost:5000/api/user/login', {
-          email_id: this.state.email,
-          password: this.state.password,
-        })
+    // login(user).then((data) => {
+    //   this.setState({ error: false });
+    //   // console.log(data)
+    //   const { email, password } = this.state;
+    //   // const email = this.state;  
+    //   // if (!(email === 'anuja@gmail.com')) {
+      
 
-      if (!(email === email && password === password)) {
-        return this.setState({ error: true });
-      }
-      else{
-        this.setState({redirectToDashboard: true});
-      } 
-      // history.push('/blog-overview');
-    });
+    //   if (!(email === this.state.email && password === this.state.password)) {
+    //     return this.setState({ error: true });
+    //   }
+    //   else{
+    //     this.setState({redirectToDashboard: true, isLoggedIn: true});
+    //   } 
+    //   // history.push('/blog-overview');
+    // });
   }
   
   handleChange = name => event => {
     this.setState({[name]: event.target.value})
   }
   render(){
-    if (this.state.redirectToDashboard === true) {
+    if (this.state.redirectToDashboard === true && this.state.isLoggedIn === true) {
       return <Redirect to='/blog-overview' />
     }
     // const {redirectToDashboard} = this.state

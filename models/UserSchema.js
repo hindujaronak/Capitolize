@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const bcrypt = require('bcrypt');
 //Create schema
 const UserSchema = new Schema({
     email_id: {
@@ -28,6 +28,10 @@ const UserSchema = new Schema({
         type : String,
         required : true
     },
+    address: {
+        type : String,
+        required : true
+    },
     state: {
         type : String,
         required : true
@@ -49,12 +53,12 @@ const UserSchema = new Schema({
     accountType: Number
 });
 
-// UserSchema.methods.generateHash = function(password) {
-//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-// };
+UserSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
-// UserSchema.methods.validPassword = function(password){
-//     return bcrypt.compareSync(password, this.password);
-// };
+UserSchema.methods.validPassword = function(password){
+    return bcrypt.compareSync(password, this.password);
+};
 
 module.exports = mongoose.model('user', UserSchema); 
