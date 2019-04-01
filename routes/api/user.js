@@ -1,25 +1,27 @@
 const express = require('express');
 const router = express.Router();
-
-const encryptPassword = require('encrypt-password');
+const bcrypt = require('bcrypt');
 
 //User Model
 
 const User = require('../../models/UserSchema');
+const UserSession = require('../../models/UserSessionSchema');
 
 
 // router.get('/home', (req, res) => {
 //     res.render('index');
 // }); // that slash represents the api/items
 
+router.post('/register', register);
+router.post('/signin', signin);
+router.get('/verify', verify);
+router.get('/logout', logout);
 
-
-router.post('/register', (req, res) => {
+function register( req, res, next) {
     var { body } = req;
     var {
         firstname,
         lastname,
-        email_id,
         password,
         mobile_number,
         city,
@@ -30,6 +32,10 @@ router.post('/register', (req, res) => {
         createdAt,
         updatedAt,
         accountType
+    } = body;
+
+    let {
+        email_id
     } = body;
 
     if(!firstname){
@@ -118,7 +124,7 @@ router.post('/register', (req, res) => {
         //     pattern: /^\w{8,24}$/,
         //     signature: 'signature',
         //     });
-        newUser.password = password;
+        newUser.password = newUser.generateHash(password);
         newUser.city = city;
         newUser.state = state;
         newUser.country = country;
@@ -143,42 +149,134 @@ router.post('/register', (req, res) => {
             });
          }
      });
-}); // that slash represents the api/user
+} // that slash represents the api/user
 
+function signin (req, res, next){
+    const { body } = req;
+    const {
+        password
+    } = body;
+    let {
+        email_id
+    } = body;
 
-
-router.post('/login', (req, res) => {
-
-    // User.findOne({email_id : email_id, password: password}, function(err, user){
-    //     if(err){
-    //         console.log(err);
-    //         return res.status(500).send({
-    //             error: "User not Found"
-    //         });
-    //     }
-    //     if(!err){
-    //         return res.status(200).send({
-    //             error: "Logged in successfully!"
-    //         });
-    //     }
-    //     return res.status(404).send();
-    // })
+    if(!email_id){
+        return res.send({
+            success: false,
+            message: 'Error: Email cannot be blank.' 
+        });
+    }
     
-    User.findOne({
-        "email_id": req.body.email_id, "password": req.body.password
+    if(!password){
+        return res.send({
+            success: false,
+            message: 'Error: Password cannot be blank.' 
+        });
+    }
+
+    email_id =  email_id.toLowerCase();
+
+    User.find({
+        // "email_id": req.body.email_id, "password": req.body.password
+        email_id : email_id
     }, (err, user) => {
+            // console.log(err);
+            // console.log(user);
             if (err){
-                return res.status('401').json({
-                    error: "User not found"
-                })
+                return res.send({
+                    success: false,
+                    message: "Error: Server Error"
+                });
             }
-            if (!err) {
-                return res.status('200').send({
-                    error: "Logged in successfully!"
-                })
+            if (user.length != 1) {
+                return res.send({
+                    success: false,
+                    message: "Error: Invalid"
+                });
             }
+            const users = user[0];  
+
+            if(!users.validPassword(password)){
+                return res.send({
+                    success: false,
+                    message: "Error: Invalid Password"
+                });
+            }
+            //otherwise
+            const userSession = new UserSession();
+            userSession.user_id = users._id;
+            
+            userSession.save((err, doc) => {
+                if (err){
+                    return res.send({
+                        success: false,
+                        message: "Error: Server Error"
+                    });
+                }
+                else{
+                    return res.send({
+                        success: true,
+                        message: 'Valid sign in',
+                        token: doc._id
+                    }); 
+                }    
+            })
         }
     )
-})
+}
+
+function verify (req, res, next){
+    const { query } = req;
+    const { token } = query;
+
+    UserSession.find({
+        _id : token,
+        isDeleted : false
+    }, (err , sessions) => {
+        if(err){
+            return res.send({
+                success: false,
+                message: "Error: server error"
+            });
+        }
+        if(sessions.length != 1){
+            return res.send({
+                success: false,
+                message: "Error: Invalid"
+            });
+        }
+        else{
+            return res.send({
+                success: true,
+                message: "verified"
+            });
+        }
+    });
+}
+function logout (req, res, next){
+    const { query } = req;
+    const { token } = query;
+
+    UserSession.findOneAndUpdate({
+        _id: token,
+        isDeleted: false
+    }, {
+        $set:  {
+            isDeleted : true}
+    }, null, (err , sessions) => {
+        if(err){
+            return res.send({
+                success: false,
+                message: "Error: server error"
+            });
+        }
+        else{
+            return res.send({
+                success: true,
+                message: "logged out"
+            });
+        }
+    });
+}
 
 module.exports = router;
