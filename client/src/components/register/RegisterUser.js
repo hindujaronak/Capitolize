@@ -16,7 +16,8 @@ import {
   Button,
   InputGroup,
   InputGroupAddon,
-  InputGroupText
+  InputGroupText,
+  FormRadio
 } from "shards-react";
 
 
@@ -32,8 +33,31 @@ const UserAccountDetails = ({ title }) => (
           <Col>
             <Form>
               <Row>
-                
+                <Col md="12" align="center">
+                  <h3>What role do you want to register as?</h3>
+                </Col>
               </Row>
+
+              <Row>
+                <Col md="4">
+                  <fieldset>
+                    <FormRadio disabled>An Official</FormRadio>
+                  </fieldset>
+                </Col>
+                <Col md="4">
+                  <fieldset>
+                    <FormRadio defaultChecked>A User</FormRadio>
+                  </fieldset>
+                </Col> 
+                <Col md="4">
+                  <fieldset>
+                    <FormRadio disabled>A Bank</FormRadio>
+                  </fieldset>
+                </Col>  
+              </Row>
+
+              <hr></hr>
+              
               <Row form>
                 {/* First Name */}
                 <Col md="6" className="form-group">
