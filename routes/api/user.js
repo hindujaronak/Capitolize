@@ -24,6 +24,7 @@ function register( req, res, next) {
         lastname,
         password,
         mobile_number,
+        address,
         city,
         state,
         country,
@@ -56,6 +57,12 @@ function register( req, res, next) {
         return res.send({
             success: false,
             message: 'Error: Email cannot be blank.' 
+        });
+    }
+    if(!address){
+        return res.send({
+            success: false,
+            message: 'Error: Address cannot be blank.' 
         });
     }
     
@@ -118,6 +125,7 @@ function register( req, res, next) {
         newUser.firstname = firstname;
         newUser.lastname = lastname;
         newUser.mobile_number = mobile_number;
+        newUser.address = address;
         // newUser.password = encryptPassword('password', {
         //     min: 8,
         //     max: 24,
@@ -253,6 +261,7 @@ function verify (req, res, next){
         }
     });
 }
+
 function logout (req, res, next){
     const { query } = req;
     const { token } = query;
