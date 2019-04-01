@@ -1,20 +1,88 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container, Row, Col } from "shards-react";
+import { 
+  Container, 
+  Row, 
+  Col, 
+  Card,
+  CardBody,
+  CardFooter,
+  Badge,
+  Button } from "shards-react";
 
 import PageTitle from "./../components/common/PageTitle";
 import SmallStats from "./../components/common/SmallStats";
 import UsersOverview from "./../components/blog/UsersOverview";
 import UsersByDevice from "./../components/blog/UsersByDevice";
-import NewDraft from "./../components/blog/NewDraft";
 import Discussions from "./../components/blog/Discussions";
 import TopReferrals from "./../components/common/TopReferrals";
 
-const BlogOverview = ({ smallStats }) => (
+
+const BlogOverview = ({ smallStats, PostsListOne }) => (
   <Container fluid className="main-content-container px-4">
     {/* Page Header */}
     <Row noGutters className="page-header py-4">
-      <PageTitle title="Blog Overview" subtitle="Dashboard" className="text-sm-left mb-3" />
+      <PageTitle title="Dashboard" subtitle="Profile Overview" className="text-sm-left mb-3" />
+    </Row>
+
+    <Row>
+      {PostsListOne.map((post, idx) => (
+        <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
+          <Card small className="card-post card-post--1">
+            <div
+              className="card-post__image"
+              style={{ backgroundImage: `url(${post.backgroundImage})` }}
+            >
+              <Badge
+                pill
+                className={`card-post__category bg-${post.categoryTheme}`}
+              >
+                {post.category}
+              </Badge>
+              <div className="card-post__author d-flex">
+                <a
+                  href="/"
+                  className="card-post__author-avatar card-post__author-avatar--small"
+                  style={{ backgroundImage: `url('${post.authorAvatar}')` }}
+                >
+                  Written by {post.author}
+                </a>
+              </div>
+            </div>
+            <CardBody>
+              <h5 className="card-title">
+                <a href="/" className="text-fiord-blue">
+                  {post.title}
+                </a>
+              </h5>
+              <p className="card-text d-inline-block mb-3">{post.body}</p>
+              <span className="text-muted">{post.date}</span>
+            </CardBody>
+          </Card>
+        </Col>
+      ))}
+    </Row>
+
+    <Row>
+      {/* Discussions */}
+      <Col lg="8" md="12" sm="12" className="mb-4">
+        <Discussions />
+      </Col>
+
+      {/* Top Referrals */}
+      <Col lg="4" md="12" sm="12" className="mb-4">
+        <TopReferrals />
+      </Col>
+
+      {/* Users Overview */}
+      <Col lg="8" md="12" sm="12" className="mb-4">
+        <UsersOverview />
+      </Col>
+
+      {/* Users by Device */}
+      <Col lg="4" md="6" sm="12" className="mb-4">
+        <UsersByDevice />
+      </Col>
     </Row>
 
     {/* Small Stats Blocks */}
@@ -36,32 +104,7 @@ const BlogOverview = ({ smallStats }) => (
       ))}
     </Row>
 
-    <Row>
-      {/* Users Overview */}
-      <Col lg="8" md="12" sm="12" className="mb-4">
-        <UsersOverview />
-      </Col>
 
-      {/* Users by Device */}
-      <Col lg="4" md="6" sm="12" className="mb-4">
-        <UsersByDevice />
-      </Col>
-
-      {/* New Draft */}
-      <Col lg="4" md="6" sm="12" className="mb-4">
-        <NewDraft />
-      </Col>
-
-      {/* Discussions */}
-      <Col lg="5" md="12" sm="12" className="mb-4">
-        <Discussions />
-      </Col>
-
-      {/* Top Referrals */}
-      <Col lg="3" md="12" sm="12" className="mb-4">
-        <TopReferrals />
-      </Col>
-    </Row>
   </Container>
 );
 
@@ -69,13 +112,14 @@ BlogOverview.propTypes = {
   /**
    * The small stats dataset.
    */
-  smallStats: PropTypes.array
+  smallStats: PropTypes.array,
+  PostsListOne: PropTypes.array
 };
 
 BlogOverview.defaultProps = {
   smallStats: [
     {
-      label: "Posts",
+      label: "Page Hits",
       value: "2,390",
       percentage: "4.7%",
       increase: true,
@@ -93,7 +137,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "Pages",
+      label: "Ideas",
       value: "182",
       percentage: "12.4",
       increase: true,
@@ -111,7 +155,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "Comments",
+      label: "Registrations",
       value: "8,147",
       percentage: "3.8%",
       increase: false,
@@ -130,7 +174,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "New Customers",
+      label: "New Users",
       value: "29",
       percentage: "2.71%",
       increase: false,
@@ -149,7 +193,7 @@ BlogOverview.defaultProps = {
       ]
     },
     {
-      label: "Subscribers",
+      label: "Contributions",
       value: "17,281",
       percentage: "2.4%",
       increase: false,
@@ -166,6 +210,52 @@ BlogOverview.defaultProps = {
           data: [3, 2, 3, 2, 4, 5, 4]
         }
       ]
+    }
+  ],
+  PostsListOne: [
+    {
+      backgroundImage: require("../images/Logo3.png"),
+      category: "Aviation",
+      categoryTheme: "dark",
+      author: "Abdul Rashid ",
+      authorAvatar: require("../images/avatars/1.jpg"),
+      title: "Conduct at an replied removal an amongst",
+      body:
+        "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see...",
+      date: "28 February 2019"
+    },
+    {
+      backgroundImage: require("../images/Logo5.png"),
+      category: "Automobile",
+      categoryTheme: "info",
+      author: "Hassan Izz-Al-Din",
+      authorAvatar: require("../images/avatars/2.jpg"),
+      title: "Off tears are day blind smile alone had ready",
+      body:
+        "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
+      date: "29 February 2019"
+    },
+    {
+      backgroundImage: require("../images/Logo3.png"),
+      category: "Chemicals",
+      categoryTheme: "royal-blue",
+      author: "Osama bin Laden",
+      authorAvatar: require("../images/avatars/2.jpg"),
+      title: "Difficult in delivered extensive at direction",
+      body:
+        "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
+      date: "29 February 2019"
+    },
+    {
+      backgroundImage: require("../images/Logo5.png"),
+      category:"Defence",
+      categoryTheme: "warning",
+      author: "Khalid Sheikh Mohammed",
+      authorAvatar: require("../images/avatars/3.jpg"),
+      title: "It so numerous if he may outlived disposal",
+      body:
+        "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
+      date: "29 February 2019"
     }
   ]
 };

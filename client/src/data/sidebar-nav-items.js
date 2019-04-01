@@ -1,30 +1,15 @@
 export default function() {
   return [
     {
-      title: "Blog Dashboard",
+      title: "Dashboard",
       to: "/blog-overview",
       htmlBefore: '<i class="material-icons">edit</i>',
       htmlAfter: ""
     },
     {
-      title: "Blog Posts",
-      htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "/blog-posts",
-    },
-    {
-      title: "Add New Post",
+      title: "Add New Idea",
       htmlBefore: '<i class="material-icons">note_add</i>',
-      to: "/add-new-post",
-    },
-    {
-      title: "Forms & Components",
-      htmlBefore: '<i class="material-icons">view_module</i>',
-      to: "/components-overview",
-    },
-    {
-      title: "Tables",
-      htmlBefore: '<i class="material-icons">table_chart</i>',
-      to: "/tables",
+      to: "/add-new-idea",
     },
     {
       title: "User Profile",
@@ -32,9 +17,19 @@ export default function() {
       to: "/user-profile-lite",
     },
     {
-      title: "Errors",
+      title: "Blog Posts",
+      htmlBefore: '<i class="material-icons">vertical_split</i>',
+      to: "/blog-posts",
+    },
+    {
+      title: "Login",
       htmlBefore: '<i class="material-icons">error</i>',
-      to: "/errors",
+      to: "/login",
+    },
+    {
+      title: "Register",
+      htmlBefore: '<i class="material-icons">error</i>',
+      to: "/register",
     }
   ];
 }

@@ -47,21 +47,21 @@ const Discussions = ({ title, discussions }) => (
               <ButtonGroup size="sm">
                 <Button theme="white">
                   <span className="text-success">
-                    <i className="material-icons">check</i>
+                    <i className="material-icons">arrow_upward</i>
                   </span>{" "}
-                  Approve
+                  Upvote
                 </Button>
                 <Button theme="white">
                   <span className="text-danger">
-                    <i className="material-icons">clear</i>
+                    <i className="material-icons">arrow_downward</i>
                   </span>{" "}
-                  Reject
+                  Downvote
                 </Button>
                 <Button theme="white">
                   <span className="text-light">
                     <i className="material-icons">more_vert</i>
                   </span>{" "}
-                  Edit
+                  
                 </Button>
               </ButtonGroup>
             </div>
@@ -101,42 +101,42 @@ Discussions.defaultProps = {
       date: "3 days ago",
       author: {
         image: require("../../images/avatars/1.jpg"),
-        name: "John Doe",
+        name: "Murli Sharma",
         url: "#"
       },
       post: {
-        title: "Hello World!",
+        title: "First Idea",
         url: "#"
       },
-      body: "Well, the way they make shows is, they make one show ..."
+      body: "Well, the way this idea works is, they make one..."
     },
     {
       id: 2,
       date: "4 days ago",
       author: {
-        image: require("../../images/avatars/2.jpg"),
-        name: "John Doe",
+        image: require("../../images/avatars/1.svg"),
+        name: "Jackie Hinduja",
         url: "#"
       },
       post: {
-        title: "Hello World!",
+        title: "First Idea",
         url: "#"
       },
-      body: "After the avalanche, it took us a week to climb out. Now..."
+      body: "It seems like a very good idea and has a lot of potential. Now..."
     },
     {
       id: 3,
       date: "5 days ago",
       author: {
-        image: require("../../images/avatars/3.jpg"),
+        image: require("../../images/avatars/1.svg"),
         name: "John Doe",
         url: "#"
       },
       post: {
-        title: "Hello World!",
+        title: "First Idea",
         url: "#"
       },
-      body: "My money's in that office, right? If she start giving me..."
+      body: "My money's on this idea, so I will ensure..."
     }
   ]
 };
