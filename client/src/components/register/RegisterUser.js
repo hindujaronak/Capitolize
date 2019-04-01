@@ -185,24 +185,24 @@ class UserAccountDetails extends Component{
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
-        credentials: 'include',
         body: JSON.stringify({
-          firstName: signUpFirstName,
-          lastName: signUpLastName,
-          email: signUpEmail,
+          firstname: signUpFirstName,
+          lastname: signUpLastName,
+          email_id: signUpEmail,
           password: signUpPassword,
-          mobile: signUpMobile,
+          mobile_number: signUpMobile,
           state: signUpState,
           address: signUpAddress,
           city: signUpCity,
           country: signUpCountry,
           pincode: signUpPincode,
           description: signUpDescription,
-          account:signUpAccountType
+          accountType:signUpAccountType
         }),
       })
-      .then((res => res.json())
+      // .then((res => res.json())
       .then(json => {
+        console.log('json', json);
         if(json.success){
           this.setState({
             signUpError: json.message,
@@ -227,7 +227,7 @@ class UserAccountDetails extends Component{
             isLoading: false
           });
         }
-      }));
+      }); //add a closing bracket
     }     
   render(){
     const{
