@@ -46,18 +46,20 @@ class UserAccountDetails extends Component{
       signUpPassword: ''
     };
 
-    // this.onTextBoxChangeSignUpEmail = this.onTextBoxChangeSignUpEmail.bind(this);
-    // this.onTextBoxChangeSignUpPassword = this.onTextBoxChangeSignUpPassword.bind(this);
-    // this.onTextBoxChangeSignUpMobile = this.onTextBoxChangeSignUpMobile.bind(this);
-    // this.onTextBoxChangeSignUpAddress = this.onTextBoxChangeSignUpAddress.bind(this);
-    // this.onTextBoxChangeSignUpFirstName = this.onTextBoxChangeSignUpFirstName.bind(this);
-    // this.onTextBoxChangeSignUpLastName = this.onTextBoxChangeSignUpLastName.bind(this);
-    // this.onTextBoxChangeSignUpCity = this.onTextBoxChangeSignUpCity.bind(this);
-    // this.onTextBoxChangeSignUpCountry = this.onTextBoxChangeSignUpCountry.bind(this);
-    // this.onTextBoxChangeSignUpState = this.onTextBoxChangeSignUpState.bind(this);
-    // this.onTextBoxChangeSignUpDescription = this.onTextBoxChangeSignUpDescription.bind(this);
-    // this.onTextBoxChangeSignUpPincode = this.onTextBoxChangeSignUpPincode.bind(this);
-    // this.onTextBoxChangeSignUpAccountType = this.onTextBoxChangeSignUpAccountType.bind(this);
+    this.onTextBoxChangeSignUpEmail = this.onTextBoxChangeSignUpEmail.bind(this);
+    this.onTextBoxChangeSignUpPassword = this.onTextBoxChangeSignUpPassword.bind(this);
+    this.onTextBoxChangeSignUpMobile = this.onTextBoxChangeSignUpMobile.bind(this);
+    this.onTextBoxChangeSignUpAddress = this.onTextBoxChangeSignUpAddress.bind(this);
+    this.onTextBoxChangeSignUpFirstName = this.onTextBoxChangeSignUpFirstName.bind(this);
+    this.onTextBoxChangeSignUpLastName = this.onTextBoxChangeSignUpLastName.bind(this);
+    this.onTextBoxChangeSignUpCity = this.onTextBoxChangeSignUpCity.bind(this);
+    this.onTextBoxChangeSignUpCountry = this.onTextBoxChangeSignUpCountry.bind(this);
+    this.onTextBoxChangeSignUpState = this.onTextBoxChangeSignUpState.bind(this);
+    this.onTextBoxChangeSignUpDescription = this.onTextBoxChangeSignUpDescription.bind(this);
+    this.onTextBoxChangeSignUpPincode = this.onTextBoxChangeSignUpPincode.bind(this);
+    this.onTextBoxChangeSignUpAccountType = this.onTextBoxChangeSignUpAccountType.bind(this);
+    
+    this.onSignUp = this.onSignUp.bind(this);
 
   }
 
@@ -86,71 +88,147 @@ class UserAccountDetails extends Component{
         isLoading: false
       });
     }
-
-    function onTextBoxChangeSignUpEmail(event){
+    // onTextBoxChangeSignUpEmail = (event) => {
+    //   this.setState({
+    //     signUpEmail: event.target.value
+    //   });
+    // }
+   
+  }
+  onTextBoxChangeSignUpEmail = (event) => {
       this.setState({
         signUpEmail: event.target.value
       });
-    }
-    function onTextBoxChangeSignUpPassword(event){
+  }
+   onTextBoxChangeSignUpPassword = (event) => {
       this.setState({
         signUpPassword: event.target.value
       });
     }
-    function onTextBoxChangeSignUpMobile(event){
+    onTextBoxChangeSignUpMobile = (event) => {
       this.setState({
         signUpMobile: event.target.value
       });
     }
-    function onTextBoxChangeSignUpFirstName(event){
+    onTextBoxChangeSignUpFirstName = (event) => {
       this.setState({
         signUpFirstname: event.target.value
       });
     }
-    function onTextBoxChangeSignUpLastName(event){
+    onTextBoxChangeSignUpLastName = (event) => {
       this.setState({
         signUpLastName: event.target.value
       });
     }
-    function onTextBoxChangeSignUpAddress(event){
+    onTextBoxChangeSignUpAddress = (event) => {
       this.setState({
         signUpAddress: event.target.value
       });
     }
-    function onTextBoxChangeSignUpCity(event){
+    onTextBoxChangeSignUpCity = (event) => {
       this.setState({
         signUpCity: event.target.value
       });
     }
-    function onTextBoxChangeSignUpCountry(event){
+    onTextBoxChangeSignUpCountry = (event) => {
       this.setState({
         signUpCountry: event.target.value
       });
     }
-    function onTextBoxChangeSignUpDescription(event){
+    onTextBoxChangeSignUpDescription = (event) => {
       this.setState({
         signUpDescription: event.target.value
       });
     }
 
-    function onTextBoxChangeSignUpPincode(event){
+    onTextBoxChangeSignUpPincode = (event) => {
       this.setState({
         signUpPincode: event.target.value
       });
     }
     
-    function onTextBoxChangeSignUpState(event){
+    onTextBoxChangeSignUpState = (event) => {
       this.setState({
         signUpState: event.target.value
       });
     }
     
-    function onTextBoxChangeSignUpAccountType(event){
+    onTextBoxChangeSignUpAccountType = (event) => {
       this.setState({
         signUpAccountType: event.target.value
       });
-    }        
-  }
+    }
+
+    onSignUp(){
+      const {
+        signUpEmail,
+        signUpPassword,
+        signUpFirstName,
+        signUpLastName,
+        signUpMobile,
+        signUpAccountType,
+        signUpAddress,
+        signUpCity,
+        signUpState,
+        signUpCountry,
+        signUpPincode,
+        signUpDescription
+      } = this.state
+
+      this.setState({
+        isLoading : true
+      });
+      
+      fetch('http://localhost:5000/api/user/register', {
+        method: 'POST', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({
+          firstName: signUpFirstName,
+          lastName: signUpLastName,
+          email: signUpEmail,
+          password: signUpPassword,
+          mobile: signUpMobile,
+          state: signUpState,
+          address: signUpAddress,
+          city: signUpCity,
+          country: signUpCountry,
+          pincode: signUpPincode,
+          description: signUpDescription,
+          account:signUpAccountType
+        }),
+      })
+      .then((res => res.json())
+      .then(json => {
+        if(json.success){
+          this.setState({
+            signUpError: json.message,
+            isLoading: false,
+            signUpAccountType : '',
+            signUpAddress: '',
+            signUpCity : '',
+            signUpCountry : '',
+            signUpDescription: '',
+            signUpEmail: '',
+            signUpFirstName : '',
+            signUpLastName : '',
+            signUpMobile : '',
+            signUpPassword : '',
+            signUpPincode : '',
+            signUpState : '',
+          });
+        }
+        else{
+          this.setState({
+            signUpError: json.message,
+            isLoading: false
+          });
+        }
+      }));
+    }     
   render(){
     const{
       isLoading,
@@ -193,17 +271,17 @@ class UserAccountDetails extends Component{
                   <Row>
                     <Col md="4">
                       <fieldset>
-                        <FormRadio value="1" checked={this.state.signUpAccountType === 1} onChange = {() => this.onTextBoxChangeSignUpAccountType()}>An Official</FormRadio>
+                        <FormRadio value="1" checked={this.state.signUpAccountType === 1} onChange = {() => this.onTextBoxChangeSignUpAccountType}>An Official</FormRadio>
                       </fieldset>
                     </Col>
                     <Col md="4">
                       <fieldset>
-                        <FormRadio defaultChecked value="2" checked={this.state.signUpAccountType === 2} onChange = {() => this.onTextBoxChangeSignUpAccountType()}>A User</FormRadio>
+                        <FormRadio defaultChecked value="2" checked={this.state.signUpAccountType === 2} onChange = {() => this.onTextBoxChangeSignUpAccountType}>A User</FormRadio>
                       </fieldset>
                     </Col> 
                     <Col md="4">
                       <fieldset>
-                        <FormRadio value="0" checked={this.state.signUpAccountType === 0} onChange = {() => this.onTextBoxChangeSignUpAccountType()} >A Bank</FormRadio>
+                        <FormRadio value="0" checked={this.state.signUpAccountType === 0} onChange = {() => this.onTextBoxChangeSignUpAccountType} >A Bank</FormRadio>
                       </fieldset>
                     </Col>  
                   </Row>
@@ -218,23 +296,23 @@ class UserAccountDetails extends Component{
                         id="feFirstName"
                         placeholder="First Name"
                         value = {signUpFirstname}
-                        onChange = {() => this.onTextBoxChangeSignUpFirstName()}
+                        onChange = {() => this.onTextBoxChangeSignUpFirstName}
                       />
                     </Col>
                     {/* Last Name */}
                     <Col md="6" className="form-group">
                       <label htmlFor="feLastName">Last Name</label>
-                    <FormGroup>
+                    {/*<FormGroup>
                         <InputGroup className="mb-3">
                             <InputGroupAddon type="prepend">
                                 <InputGroupText></InputGroupText>
-                            </InputGroupAddon>
+                            </InputGroupAddon>*/}
                             <FormInput 
                               value = {signUpLastName}
-                              onChange = {() => this.onTextBoxChangeSignUpLastName()}
+                              onChange = {() => this.onTextBoxChangeSignUpLastName}
                               placeholder="Last Name" />
-                        </InputGroup>
-                    </FormGroup>
+                        {/*</InputGroup>
+                    </FormGroup>*/}
                     </Col>
                   </Row>
                   <Row form>
@@ -246,7 +324,7 @@ class UserAccountDetails extends Component{
                         id="feEmail"
                         placeholder="Email Address"
                         value = {signUpEmail}
-                        onChange = {() => this.onTextBoxChangeSignUpEmail()}
+                        onChange = {() => this.onTextBoxChangeSignUpEmail}
                         autoComplete="email"
                       />
                     </Col>
@@ -258,7 +336,7 @@ class UserAccountDetails extends Component{
                         id="fePassword"
                         placeholder="Password"
                         value = {signUpPassword}
-                        onChange = {() => this.onTextBoxChangeSignUpPassword()}
+                        onChange = {() => this.onTextBoxChangeSignUpPassword}
                         autoComplete="current-password"
                       />
                     </Col>
@@ -269,7 +347,7 @@ class UserAccountDetails extends Component{
                       id="feAddress"
                       placeholder="Address"
                       value = {signUpAddress}
-                      onChange = {() => this.onTextBoxChangeSignUpAddress()}
+                      onChange = {() => this.onTextBoxChangeSignUpAddress}
                     />
                   </FormGroup>
                   <Row form>
@@ -280,7 +358,7 @@ class UserAccountDetails extends Component{
                         id="feCity"
                         placeholder="City"
                         value = {signUpCity}
-                        onChange = {() => this.onTextBoxChangeSignUpCity()}
+                        onChange = {() => this.onTextBoxChangeSignUpCity}
                       />
                     </Col>
                     {/* State */}
@@ -298,7 +376,7 @@ class UserAccountDetails extends Component{
                         id="feZipCode"
                         placeholder="Zip"
                         value = {signUpPincode}
-                        onChange = {() => this.onTextBoxChangeSignUpPincode()}
+                        onChange = {() => this.onTextBoxChangeSignUpPincode}
                       />
                     </Col>
                   </Row>
@@ -306,10 +384,10 @@ class UserAccountDetails extends Component{
                     {/* Description */}
                     <Col md="12" className="form-group">
                       <label htmlFor="feDescription">Description</label>
-                      <FormTextarea id="feDescription" value = {signUpDescription} onChange = {() => this.onTextBoxChangeSignUpDescription()} rows="5" />
+                      <FormTextarea id="feDescription" value = {signUpDescription} onChange = {() => this.onTextBoxChangeSignUpDescription} rows="5" />
                     </Col>
                   </Row>
-                  <Button theme="accent">Register Account</Button>
+                  <Button theme="accent" onClick = {() => this.onSignUp()}>Register Account</Button>
                 </Form>
               </Col>
             </Row>
