@@ -36,15 +36,17 @@ class UserAccountDetails extends Component{
       signInPassword: '',
       isLoggedIn: false
     };
-    this.onTextBoxChangeSignInEmail = this.onTextBoxChangeSignInEmail.bind(this);
-    this.onTextBoxChangeSignInPassword = this.onTextBoxChangeSignInPassword.bind(this);
+    // this.onTextBoxChangeSignInEmail = this.onTextBoxChangeSignInEmail.bind(this);
+    // this.onTextBoxChangeSignInPassword = this.onTextBoxChangeSignInPassword.bind(this);
 
     this.onLogin = this.onLogin.bind(this);
 
   }
   componentDidMount(){
-    const token = getFromStorage('mainapp');
-    if(token){
+    const obj = getFromStorage('mainapp');
+    
+    if(obj && obj.token){
+      const { token } = obj;
       fetch('api/user/verify?token=' + token)
         .then(res => res.json())
         .then(json => {
@@ -75,19 +77,63 @@ class UserAccountDetails extends Component{
    
   }
 
-  onTextBoxChangeSignInEmail = (event) => {
-      this.setState({
-        signInEmail: event.target.value
-      });
-  }
-  onTextBoxChangeSignInPassword = (event) => {
-    this.setState({
-      signInPassword: event.target.value
-    });
-  }
+  // onTextBoxChangeSignInEmail = (event) => {
+  //     this.setState({
+  //       signInEmail: event.target.value
+  //     });
+  // }
+  // onTextBoxChangeSignInPassword = (event) => {
+  //   this.setState({
+  //     signInPassword: event.target.value
+  //   });
+  // }
   
 
-  onLogin = () => {}
+  onLogin = () => {
+    const {
+        signInEmail,
+        signInPassword,
+        isLoggedIn
+      } = this.state
+
+      this.setState({
+        isLoading : true
+      });
+      
+      fetch('http://localhost:5000/api/user/signin', {
+        method: 'POST', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email_id: signInEmail,
+          password: signInPassword
+        }),
+      })
+      // .then((res => res.json())
+      .then(json => {
+        console.log('json', json);
+        if(json.success){
+          setInStorage('mainapp', { token: json.token });
+          this.setState({
+            signInError: json.message,
+            isLoading: false,
+            signInEmail: '',
+            signInPassword : '',
+            token : json.token,
+            isLoggedIn : true
+          });
+          
+        }
+        else{
+          this.setState({
+            signInError: json.message,
+            isLoading: false
+          });
+        }
+      });
+  }
   
   handleChange = name => event => {
     this.setState({[name]: event.target.value})
@@ -97,16 +143,16 @@ class UserAccountDetails extends Component{
       isLoading,
       token,
       signInEmail,
-      signInPassword
+      signInPassword,
+      isLoggedIn
     } = this.state;
 
     if(isLoading){
       return(<div><p>Loading...</p></div>);
     }
-
-    // if (this.state.redirectToDashboard === true && this.state.isLoggedIn === true) {
-    //   return <Redirect to='/blog-overview' />
-    // }
+    if (isLoggedIn === true) {
+      return <Redirect to='/blog-overview' />
+    }
     // const {redirectToDashboard} = this.state
     // if (redirectToDashboard) {
     //   return (<Redirect to='/blog-overview'/>)
