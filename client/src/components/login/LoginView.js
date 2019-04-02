@@ -1,7 +1,7 @@
 import React , {Component} from "react";
 import {login} from './login_helper.js';
 import PropTypes from "prop-types";
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -113,8 +113,7 @@ class UserAccountDetails extends Component{
       })
       // .then((res => res.json())
       .then(json => {
-        console.log('json', json);
-        if(json.success){
+        if(json.status === 200){
           setInStorage('mainapp', { token: json.token });
           this.setState({
             signInError: json.message,
@@ -146,11 +145,12 @@ class UserAccountDetails extends Component{
       signInPassword,
       isLoggedIn
     } = this.state;
-
+    console.log(this.state)
     if(isLoading){
       return(<div><p>Loading...</p></div>);
     }
-    if (isLoggedIn === true) {
+    if (isLoggedIn) {
+      // console.log(isLoggedIn)
       return <Redirect to='/blog-overview' />
     }
     // const {redirectToDashboard} = this.state

@@ -1,6 +1,8 @@
 import React , {Component} from "react";
 import PropTypes from "prop-types";
 import SocialMediaIcons from 'react-social-media-icons';
+import {Redirect} from 'react-router-dom';
+
 import {
   Card,
   CardHeader,
@@ -26,6 +28,7 @@ class UserAccountDetails extends Component{
     super(props);
     this.state = {
       isLoading: true,
+      signUp: false,
       token: '',
       signUpError: '',
       signUpFirstName:'',
@@ -63,17 +66,19 @@ class UserAccountDetails extends Component{
     const token = getFromStorage('mainapp');
     if(token){
       fetch('api/user/verify?token=' + token)
-        .then(res => res.json())
+        // .then(res => res.json())
         .then(json => {
           if(json.success){
             this.setState({
               token,
-              isLoading:false
+              isLoading:false,
+              signUp:true
             });
           }
           else{
             this.setState({
-              isLoading: false
+              isLoading: false,
+              // signUp: true
             });
           }
         }
@@ -109,7 +114,8 @@ class UserAccountDetails extends Component{
         signUpState,
         signUpCountry,
         signUpPincode,
-        signUpDescription
+        signUpDescription,
+        signUp
       } = this.state
 
       this.setState({
@@ -139,10 +145,11 @@ class UserAccountDetails extends Component{
       // .then((res => res.json())
       .then(json => {
         console.log('json', json);
-        if(json.success){
+        if(json.status === 200){
           this.setState({
             signUpError: json.message,
             isLoading: false,
+            signUp: true,
             signUpAccountType : '',
             signUpAddress: '',
             signUpCity : '',
@@ -180,11 +187,17 @@ class UserAccountDetails extends Component{
       signUpLastName,
       signUpMobile,
       signUpEmail,
-      signUpPassword
+      signUpPassword,
+      signUp
     } = this.state;
 
     if(isLoading){
       return(<div><p>Loading...</p></div>);
+    }
+    
+    if (signUp) {
+      // console.log(isLoggedIn)
+      return <Redirect to='/blog-overview' />
     }
     if(!token){
      return(
