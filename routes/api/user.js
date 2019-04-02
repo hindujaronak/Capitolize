@@ -19,7 +19,7 @@ router.get('/logout', logout);
 
 function register( req, res, next) {
     var { body } = req;
-    console.log('body', body);
+    // console.log('body', body);
     var {
         firstname,
         lastname,

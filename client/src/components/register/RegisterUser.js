@@ -42,18 +42,18 @@ class UserAccountDetails extends Component{
       signUpPassword: ''
     };
 
-    this.onTextBoxChangeSignUpEmail = this.onTextBoxChangeSignUpEmail.bind(this);
-    this.onTextBoxChangeSignUpPassword = this.onTextBoxChangeSignUpPassword.bind(this);
-    this.onTextBoxChangeSignUpMobile = this.onTextBoxChangeSignUpMobile.bind(this);
-    this.onTextBoxChangeSignUpAddress = this.onTextBoxChangeSignUpAddress.bind(this);
-    this.onTextBoxChangeSignUpFirstName = this.onTextBoxChangeSignUpFirstName.bind(this);
-    this.onTextBoxChangeSignUpLastName = this.onTextBoxChangeSignUpLastName.bind(this);
-    this.onTextBoxChangeSignUpCity = this.onTextBoxChangeSignUpCity.bind(this);
-    this.onTextBoxChangeSignUpCountry = this.onTextBoxChangeSignUpCountry.bind(this);
-    this.onTextBoxChangeSignUpState = this.onTextBoxChangeSignUpState.bind(this);
-    this.onTextBoxChangeSignUpDescription = this.onTextBoxChangeSignUpDescription.bind(this);
-    this.onTextBoxChangeSignUpPincode = this.onTextBoxChangeSignUpPincode.bind(this);
-    this.onTextBoxChangeSignUpAccountType = this.onTextBoxChangeSignUpAccountType.bind(this);
+    // this.onTextBoxChangeSignUpEmail = this.onTextBoxChangeSignUpEmail.bind(this);
+    // this.onTextBoxChangeSignUpPassword = this.onTextBoxChangeSignUpPassword.bind(this);
+    // this.onTextBoxChangeSignUpMobile = this.onTextBoxChangeSignUpMobile.bind(this);
+    // this.onTextBoxChangeSignUpAddress = this.onTextBoxChangeSignUpAddress.bind(this);
+    // this.onTextBoxChangeSignUpFirstName = this.onTextBoxChangeSignUpFirstName.bind(this);
+    // this.onTextBoxChangeSignUpLastName = this.onTextBoxChangeSignUpLastName.bind(this);
+    // this.onTextBoxChangeSignUpCity = this.onTextBoxChangeSignUpCity.bind(this);
+    // this.onTextBoxChangeSignUpCountry = this.onTextBoxChangeSignUpCountry.bind(this);
+    // this.onTextBoxChangeSignUpState = this.onTextBoxChangeSignUpState.bind(this);
+    // this.onTextBoxChangeSignUpDescription = this.onTextBoxChangeSignUpDescription.bind(this);
+    // this.onTextBoxChangeSignUpPincode = this.onTextBoxChangeSignUpPincode.bind(this);
+    // this.onTextBoxChangeSignUpAccountType = this.onTextBoxChangeSignUpAccountType.bind(this);
     
     this.onSignUp = this.onSignUp.bind(this);
 
@@ -91,69 +91,10 @@ class UserAccountDetails extends Component{
     // }
    
   }
-  onTextBoxChangeSignUpEmail = (event) => {
-    this.setState({
-      signUpEmail: event.target.value
-    });
-  }
-  onTextBoxChangeSignUpPassword = (event) => {
-    this.setState({
-      signUpPassword: event.target.value
-    });
-  }
-    onTextBoxChangeSignUpMobile = (event) => {
-      this.setState({
-        signUpMobile: event.target.value
-      });
-    }
-    onTextBoxChangeSignUpFirstName = (event) => {
-      this.setState({
-        signUpFirstname: event.target.value
-      });
-    }
-    onTextBoxChangeSignUpLastName = (event) => {
-      this.setState({
-        signUpLastName: event.target.value
-      });
-    }
-    onTextBoxChangeSignUpAddress = (event) => {
-      this.setState({
-        signUpAddress: event.target.value
-      });
-    }
-    onTextBoxChangeSignUpCity = (event) => {
-      this.setState({
-        signUpCity: event.target.value
-      });
-    }
-    onTextBoxChangeSignUpCountry = (event) => {
-      this.setState({
-        signUpCountry: event.target.value
-      });
-    }
-    onTextBoxChangeSignUpDescription = (event) => {
-      this.setState({
-        signUpDescription: event.target.value
-      });
-    }
 
-    onTextBoxChangeSignUpPincode = (event) => {
-      this.setState({
-        signUpPincode: event.target.value
-      });
-    }
-    
-    onTextBoxChangeSignUpState = (event) => {
-      this.setState({
-        signUpState: event.target.value
-      });
-    }
-    
-    onTextBoxChangeSignUpAccountType = (event) => {
-      this.setState({
-        signUpAccountType: event.target.value
-      });
-    }
+  handleChange = name => event => {
+    this.setState({[name]: event.target.value})
+  }
 
     onSignUp(){
       const {
@@ -178,7 +119,6 @@ class UserAccountDetails extends Component{
       fetch('http://localhost:5000/api/user/register', {
         method: 'POST', 
         headers: {
-          'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -229,7 +169,7 @@ class UserAccountDetails extends Component{
     const{
       isLoading,
       token,
-      signUpFirstname,
+      signUpFirstName,
       signUpAccountType,
       signUpPincode,
       signUpDescription,
@@ -266,13 +206,13 @@ class UserAccountDetails extends Component{
 
                   <Row>
                     <Col mod="4">
-                      <input type="radio" value={this.state.signUpAccountType === 1} onChange = {() => this.onTextBoxChangeSignUpAccountType} /> An Official
+                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 1} onChange = {this.handleChange('signUpAccountType')} /> An Official
                     </Col>
                     <Col mod="4">
-                      <input type="radio" value={this.state.signUpAccountType === 2} onChange = {() => this.onTextBoxChangeSignUpAccountType} /> A User
+                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 2} onChange = {this.handleChange('signUpAccountType')} /> A User
                     </Col>
                     <Col mod="4">
-                      <input type="radio" value={this.state.signUpAccountType === 0} onChange = {() => this.onTextBoxChangeSignUpAccountType} /> A Bank
+                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 0} onChange = {this.handleChange('signUpAccountType')} /> A Bank
                     </Col>
                   </Row>
 
@@ -285,8 +225,9 @@ class UserAccountDetails extends Component{
                       <FormInput
                         id="feFirstName"
                         placeholder="First Name"
-                        defaultValue = {signUpFirstname}
-                        onChange = {() => this.onTextBoxChangeSignUpFirstName}
+                        defaultValue = {this.signUpFirstName}
+                        name="signUpFirstName"
+                        onChange = {this.handleChange('signUpFirstName')}
                       />
                     </Col>
                     {/* Last Name */}
@@ -300,8 +241,9 @@ class UserAccountDetails extends Component{
                       <FormInput
                         id="feLastName"
                         placeholder="Last Name"
-                        defaultValue = {signUpLastName}
-                        onChange = {() => this.onTextBoxChangeSignUpLastName}
+                        name="signUpLastName"
+                        defaultValue = {this.signUpLastName}
+                        onChange = {this.handleChange('signUpLastName')}
                       />
                         {/*</InputGroup>
                     </FormGroup>*/}
@@ -315,8 +257,9 @@ class UserAccountDetails extends Component{
                         type="email"
                         id="feEmail"
                         placeholder="Email Address"
-                        defaultValue = {signUpEmail}
-                        onChange = {() => this.onTextBoxChangeSignUpEmail}
+                        name="signUpEmail"
+                        defaultValue = {this.signUpEmail}
+                        onChange = {this.handleChange('signUpEmail')}
                         autoComplete="email"
                       />
                     </Col>
@@ -327,8 +270,9 @@ class UserAccountDetails extends Component{
                         type="password"
                         id="fePassword"
                         placeholder="Password"
-                        defaultValue = {signUpPassword}
-                        onChange = {() => this.onTextBoxChangeSignUpPassword}
+                        name="signUpPassword"
+                        defaultValue = {this.signUpPassword}
+                        onChange = {this.handleChange('signUpPassword')}
                         autoComplete="current-password"
                       />
                     </Col>
@@ -338,8 +282,9 @@ class UserAccountDetails extends Component{
                     <FormInput
                       id="feAddress"
                       placeholder="Address"
-                      defaultValue = {signUpAddress}
-                      onChange = {() => this.onTextBoxChangeSignUpAddress}
+                      name="signUpAddress"
+                      defaultValue = {this.signUpAddress}
+                      onChange = {this.handleChange('signUpAddress')}
                     />
                   </FormGroup>
                   <Row form>
@@ -349,8 +294,9 @@ class UserAccountDetails extends Component{
                       <FormInput
                         id="feCity"
                         placeholder="City"
-                        defaultValue = {signUpCity}
-                        onChange = {() => this.onTextBoxChangeSignUpCity}
+                        name="signUpCity"
+                        defaultValue = {this.signUpCity}
+                        onChange = {this.handleChange('signUpCity')}
                       />
                     </Col>
                     {/* State */}
@@ -359,8 +305,9 @@ class UserAccountDetails extends Component{
                       <FormInput
                         id="feState"
                         placeholder="State"
-                        defaultValue = {signUpState}
-                        onChange = {() => this.onTextBoxChangeSignUpState}
+                        name="signUpState"
+                        defaultValue = {this.signUpState}
+                        onChange = {this.handleChange('signUpState')}
                       />
                     </Col>
                     {/* Zip Code */}
@@ -369,16 +316,39 @@ class UserAccountDetails extends Component{
                       <FormInput
                         id="feZipCode"
                         placeholder="Zip"
-                        defaultValue = {signUpPincode}
-                        onChange = {() => this.onTextBoxChangeSignUpPincode}
+                        name="signUpPincode"
+                        defaultValue = {this.signUpPincode}
+                        onChange = {this.handleChange('signUpPincode')}
                       />
                     </Col>
                   </Row>
+                   {/* mobile */}
+                    <Col md="3" className="form-group">
+                      <label htmlFor="feMobileNumber">Mobile Number</label>
+                      <FormInput
+                        id="feMobileNumber"
+                        placeholder="Mobile Number"
+                        defaultValue = {this.signUpMobile}
+                        name="signUpMobile"
+                        onChange = {this.handleChange('signUpMobile')}
+                      />
+                    </Col>
+                    {/*country*/}
+                    <Col md="3" className="form-group">
+                      <label htmlFor="feCountry">Country</label>
+                      <FormInput
+                        id="feCountry"
+                        placeholder="Country"
+                        defaultValue = {this.signUpCountry}
+                        name="signUpCountry"
+                        onChange = {this.handleChange('signUpCountry')}
+                      />
+                    </Col>
                   <Row form>
                     {/* Description */}
                     <Col md="12" className="form-group">
                       <label htmlFor="feDescription">Description</label>
-                      <FormTextarea id="feDescription" defaultValue = {signUpDescription} onChange = {() => this.onTextBoxChangeSignUpDescription} rows="5" />
+                      <FormTextarea id="feDescription" name="signUpDescription" defaultValue = {this.signUpDescription} onChange = {this.handleChange('signUpDescription')} rows="5" />
                     </Col>
                   </Row>
                   <Button theme="accent" onClick = {() => this.onSignUp()}>Register Account</Button>
@@ -400,11 +370,13 @@ UserAccountDetails.propTypes = {
   /**
    * The component's title.
    */
-  title: PropTypes.string
+  title: PropTypes.string,
+  name: PropTypes.string
 };
 
 UserAccountDetails.defaultProps = {
-  title: "Register User"
+  title: "Register User",
+  name: "Me"
 };
 
 export default UserAccountDetails;
