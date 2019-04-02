@@ -1,7 +1,7 @@
 import React , {Component} from "react";
 import {login} from './login_helper.js';
 import PropTypes from "prop-types";
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
 import {
   Card,
   CardHeader,
@@ -12,7 +12,6 @@ import {
   Form,
   FormGroup,
   FormInput,
-  
   Button,
   InputGroup,
   InputGroupAddon,

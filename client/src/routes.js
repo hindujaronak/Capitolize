@@ -14,6 +14,7 @@ import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import Fundraiser from "./views/Fundraiser";
 
 export default [
   {
@@ -66,5 +67,10 @@ export default [
     path: "/register",
     layout: DefaultLayout,
     component: Register
+  },
+  {
+    path: "/fundraiser{id}",
+    layoud: DefaultLayout,
+    component: Fundraiser
   }
 ];
