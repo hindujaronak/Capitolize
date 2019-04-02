@@ -111,7 +111,7 @@ class UserAccountDetails extends Component{
     // if (redirectToDashboard) {
     //   return (<Redirect to='/blog-overview'/>)
     // }
-    if(token){
+    if(!token){
       return(
         <Card small className="-3">
           <CardHeader className="border-bottom">
@@ -186,6 +186,9 @@ class UserAccountDetails extends Component{
         </Card>
       )
     }
+    return(
+      <Redirect to = "/blog-overview" />
+    )
   }
 }
 
