@@ -13,11 +13,7 @@ import {
   FormInput,
   FormSelect,
   FormTextarea,
-  Button,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  FormRadio
+  Button
 } from "shards-react";
 
 import{
@@ -268,22 +264,36 @@ class UserAccountDetails extends Component{
                     </Col>
                   </Row>
 
+                  {/* <form>
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="1" checked={this.state.signUpAccountType === '1'} onChange = {() => this.onTextBoxChangeSignUpAccountType} />
+                        An Official
+                      </label>
+                    </div>
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="2" checked={this.state.signUpAccountType === '2'} onChange = {() => this.onTextBoxChangeSignUpAccountType} />
+                        A User
+                      </label>
+                    </div>
+                    <div className="radio">
+                      <label>
+                        <input type="radio" value="0" checked={this.state.signUpAccountType === '0'} onChange = {() => this.onTextBoxChangeSignUpAccountType} />
+                        A Bank
+                      </label>
+                    </div>
+                  </form> */}
                   <Row>
-                    <Col md="4">
-                      <fieldset>
-                        <FormRadio value="1" checked={this.state.signUpAccountType === 1} onChange = {() => this.onTextBoxChangeSignUpAccountType}>An Official</FormRadio>
-                      </fieldset>
+                    <Col mod="4">
+                      <input type="radio" value={this.state.signUpAccountType === 1} onChange = {() => this.onTextBoxChangeSignUpAccountType} /> An Official
                     </Col>
-                    <Col md="4">
-                      <fieldset>
-                        <FormRadio defaultChecked value="2" checked={this.state.signUpAccountType === 2} onChange = {() => this.onTextBoxChangeSignUpAccountType}>A User</FormRadio>
-                      </fieldset>
-                    </Col> 
-                    <Col md="4">
-                      <fieldset>
-                        <FormRadio value="0" checked={this.state.signUpAccountType === 0} onChange = {() => this.onTextBoxChangeSignUpAccountType} >A Bank</FormRadio>
-                      </fieldset>
-                    </Col>  
+                    <Col mod="4">
+                      <input type="radio" value={this.state.signUpAccountType === 2} onChange = {() => this.onTextBoxChangeSignUpAccountType} /> A User
+                    </Col>
+                    <Col mod="4">
+                      <input type="radio" value={this.state.signUpAccountType === 0} onChange = {() => this.onTextBoxChangeSignUpAccountType} /> A Bank
+                    </Col>
                   </Row>
 
                   <hr></hr>

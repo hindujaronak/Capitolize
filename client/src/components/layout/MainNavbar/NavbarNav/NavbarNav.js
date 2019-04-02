@@ -7,8 +7,8 @@ import Chatbot from "./Chatbot";
 
 export default () => (
   <Nav navbar className="border-left flex-row">
-    <Notifications />
     <UserActions />
+    <Notifications />
     <Chatbot />
   </Nav>
 );
