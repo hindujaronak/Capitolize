@@ -19,135 +19,173 @@ import {
   InputGroupText
 } from "shards-react";
 import axios from 'axios';
+import{
+  getFromStorage,
+  setInStorage
+} from "../../utils/storage.js";
+
 
 class UserAccountDetails extends Component{
   constructor(){
     super();
     this.state = {
-      email: '',
-      password: '',
-      error: '',
-      redirectToDashboard: false,
+      isLoading: true,
+      token: '',
+      signInError: '',
+      signInEmail: '',
+      signInPassword: '',
       isLoggedIn: false
+    };
+    this.onTextBoxChangeSignInEmail = this.onTextBoxChangeSignInEmail.bind(this);
+    this.onTextBoxChangeSignInPassword = this.onTextBoxChangeSignInPassword.bind(this);
+
+    this.onLogin = this.onLogin.bind(this);
+
+  }
+  componentDidMount(){
+    const token = getFromStorage('mainapp');
+    if(token){
+      fetch('api/user/verify?token=' + token)
+        .then(res => res.json())
+        .then(json => {
+          if(json.success){
+            this.setState({
+              token,
+              isLoading:false
+            });
+          }
+          else{
+            this.setState({
+              isLoading: false
+            });
+          }
+        }
+      );
     }
+    else{
+      this.setState({
+        isLoading: false
+      });
+    }
+    // onTextBoxChangeSignUpEmail = (event) => {
+    //   this.setState({
+    //     signUpEmail: event.target.value
+    //   });
+    // }
+   
   }
 
-  clickLogin = () => {
-    const user = {
-      email: this.state.email || undefined,
-      password: this.state.password || undefined
-    }
-
-    axios
-      .get('http://localhost:5000/api/user/login')
-      .then(response=>console.log(response)) 
-      // {
-      //   email_id: this.state.email,
-      //   password: this.state.password,
-      // })
-
-    // login(user).then((data) => {
-    //   this.setState({ error: false });
-    //   // console.log(data)
-    //   const { email, password } = this.state;
-    //   // const email = this.state;  
-    //   // if (!(email === 'anuja@gmail.com')) {
-      
-
-    //   if (!(email === this.state.email && password === this.state.password)) {
-    //     return this.setState({ error: true });
-    //   }
-    //   else{
-    //     this.setState({redirectToDashboard: true, isLoggedIn: true});
-    //   } 
-    //   // history.push('/blog-overview');
-    // });
+  onTextBoxChangeSignInEmail = (event) => {
+      this.setState({
+        signInEmail: event.target.value
+      });
   }
+  onTextBoxChangeSignInPassword = (event) => {
+    this.setState({
+      signInPassword: event.target.value
+    });
+  }
+  
+
+  onLogin = () => {}
   
   handleChange = name => event => {
     this.setState({[name]: event.target.value})
   }
   render(){
-    if (this.state.redirectToDashboard === true && this.state.isLoggedIn === true) {
-      return <Redirect to='/blog-overview' />
+    const{
+      isLoading,
+      token,
+      signInEmail,
+      signInPassword
+    } = this.state;
+
+    if(isLoading){
+      return(<div><p>Loading...</p></div>);
     }
+
+    // if (this.state.redirectToDashboard === true && this.state.isLoggedIn === true) {
+    //   return <Redirect to='/blog-overview' />
+    // }
     // const {redirectToDashboard} = this.state
     // if (redirectToDashboard) {
     //   return (<Redirect to='/blog-overview'/>)
     // }
-    return(
-      <Card small className="-3">
-        <CardHeader className="border-bottom">
-          {/*<h6 className="m-0">{title}</h6>*/}
-          <h6 className="m-0">Login</h6>
-        </CardHeader>
-        <ListGroup flush>
-          <ListGroupItem className="p-3">
-            <Row>
-              <Col>
-                <Form>  
-                  <Row form>
-                  
-                    {/* Email */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="feLastName">Email id</label>
-                    <FormGroup>
-                        <InputGroup className="mb-2 ">
-                            <InputGroupAddon type="prepend">
-                                <InputGroupText></InputGroupText>
-                            </InputGroupAddon>
-                            <FormInput placeholder="Email id" name="email" value={this.state.email} onChange={this.handleChange('email')} />
-                        </InputGroup>
-                    </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row form>
+    if(token){
+      return(
+        <Card small className="-3">
+          <CardHeader className="border-bottom">
+            {/*<h6 className="m-0">{title}</h6>*/}
+            <h6 className="m-0">Login</h6>
+          </CardHeader>
+          <ListGroup flush>
+            <ListGroupItem className="p-3">
+              <Row>
+                <Col>
+                  <Form>  
+                    <Row form>
                     
-                    {/* Password */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="fePassword">Password</label>
-                      
+                      {/* Email */}
+                      <Col md="6" className="form-group">
+                        <label htmlFor="feLastName">Email id</label>
                       <FormGroup>
-                      <InputGroup className="mb-3">
-                            <InputGroupAddon type="prepend">
-                                <InputGroupText></InputGroupText>
-                            </InputGroupAddon>
-                            <FormInput type="password"
-                            id="fePassword" name="password"
-                            placeholder="Password" value={this.state.password} onChange={this.handleChange('password')}
-                            />
-                        </InputGroup>
-                    </FormGroup>
-                    </Col>
-                  </Row>
-                  
-                    <Row>
-                    {/* Confirm Password */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="fePassword">Forgot Password?</label>
+                          <InputGroup className="mb-2 ">
+                              <InputGroupAddon type="prepend">
+                                  <InputGroupText></InputGroupText>
+                              </InputGroupAddon>
+                              <FormInput placeholder="Email id" name="signInEmail" value={signInEmail} onChange={this.handleChange('signInEmail')} />
+                          </InputGroup>
+                      </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row form>
                       
-                      <br></br>
-                      <a href="/login">Click here to reset password</a>
-                      <br></br>
+                      {/* Password */}
+                      <Col md="6" className="form-group">
+                        <label htmlFor="fePassword">Password</label>
+                        
+                        <FormGroup>
+                        <InputGroup className="mb-3">
+                              <InputGroupAddon type="prepend">
+                                  <InputGroupText></InputGroupText>
+                              </InputGroupAddon>
+                              <FormInput type="password"
+                              id="fePassword" name="signInPassword"
+                              placeholder="Password" value={signInPassword} onChange={this.handleChange('signInPassword')}
+                              />
+                          </InputGroup>
+                      </FormGroup>
+                      </Col>
+                    </Row>
+                    
+                      <Row>
+                      {/* Confirm Password */}
+                      <Col md="6" className="form-group">
+                        <label htmlFor="fePassword">Forgot Password?</label>
+                        
+                        <br></br>
+                        <a href="/login">Click here to reset password</a>
+                        <br></br>
 
-                    </Col>
-                  </Row>
-                  
-                  
-                  <Button theme="accent" onClick={this.clickLogin}>Login</Button>
-                  {/*<Redirect
-                    to={{
-                      pathname: "/blog-overview",
-                      state: { referrer: '/login' }
-                    }}
-                  />*/}
-                </Form>
-              </Col>
-            </Row>
-          </ListGroupItem>
-        </ListGroup>
-      </Card>
-    )
+                      </Col>
+                    </Row>
+                    
+                    
+                    <Button theme="accent" onClick={this.onLogin}>Login</Button>
+                    {/*<Redirect
+                      to={{
+                        pathname: "/blog-overview",
+                        state: { referrer: '/login' }
+                      }}
+                    />*/}
+                  </Form>
+                </Col>
+              </Row>
+            </ListGroupItem>
+          </ListGroup>
+        </Card>
+      )
+    }
   }
 }
 
