@@ -70,7 +70,7 @@ export default [
   },
   {
     path: "/fundraiser",
-    layoud: DefaultLayout,
+    layout: DefaultLayout,
     component: Fundraiser
   }
 ];
