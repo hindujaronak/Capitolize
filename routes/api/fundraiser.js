@@ -18,9 +18,11 @@ const upload = multer({
 });
 //User Model
 
-const Fundraiser = require('../../models/FundraiserSchema'); //schema add kiya
+const type = upload.single('image');
 
-router.post('/addFundraiser', upload.single('image'), (req,res) => {
+const Fundraiser = require('../../models/FundraiserSchema');
+
+router.post('/addFundraiser', type, (req,res) => {
     const newFundraiser = new Fundraiser({
         title: req.body.title,
         description: req.body.description,
@@ -30,9 +32,9 @@ router.post('/addFundraiser', upload.single('image'), (req,res) => {
         updatedAt: req.body.updatedAt,
         accountType: req.body.accountType        
     });    
-
-    newFundraiser.save().then(fundraiser => res.json(fundraiser));
-}); // that slash represents the api/user
+    newFundraiser.save()
+    .then(fundraiser => console.log(res.json(fundraiser)));
+}); // that slash represents the api/fundraiser
 
 router.get('/allFundraisers', getAllFundraisers);
 

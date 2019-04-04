@@ -6,6 +6,8 @@ import RegisterUser from "../components/register/RegisterUser";
 
 class UserProfileLite extends Component{
   render(){
+    let props = this.props
+
     return(
       <Container fluid className="main-content-container px-4">
         <Row noGutters className="page-header py-4">
@@ -17,7 +19,7 @@ class UserProfileLite extends Component{
         </Row>
         <Row>
           <Col lg="12">
-            <RegisterUser />
+            <RegisterUser {...props}/>
           </Col>
         </Row>
       </Container>

@@ -6,7 +6,8 @@ import getSidebarNavItems from "../data/sidebar-nav-items";
 
 let _store = {
   menuVisible: false,
-  navItems: getSidebarNavItems()
+  navItems: getSidebarNavItems(),
+  userId: null
 };
 
 class Store extends EventEmitter {
@@ -15,8 +16,11 @@ class Store extends EventEmitter {
 
     this.registerToActions = this.registerToActions.bind(this);
     this.toggleSidebar = this.toggleSidebar.bind(this);
+    this.setUserId = this.setUserId.bind(this);
 
-    Dispatcher.register(this.registerToActions.bind(this));
+    Dispatcher.register(this.registerToActions(this));
+    // Dispatcher.setUserId(this.setUserId(this));
+
   }
 
   registerToActions({ actionType, payload }) {
@@ -33,12 +37,21 @@ class Store extends EventEmitter {
     this.emit(Constants.CHANGE);
   }
 
+  setUserId(userId) {
+    console.log("User id is " + userId)
+    _store.userId = userId
+  }
+
   getMenuState() {
     return _store.menuVisible;
   }
 
   getSidebarItems() {
     return _store.navItems;
+  }
+
+  getUserId() {
+    return _store.userId;
   }
 
   addChangeListener(callback) {

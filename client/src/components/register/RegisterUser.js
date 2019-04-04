@@ -1,6 +1,8 @@
 import React , {Component} from "react";
 import PropTypes from "prop-types";
 import SocialMediaIcons from 'react-social-media-icons';
+import {Redirect} from 'react-router-dom';
+
 import {
   Card,
   CardHeader,
@@ -24,8 +26,11 @@ import{
 class UserAccountDetails extends Component{
   constructor(props){
     super(props);
+    console.log("Props are")
+    console.log(props)
     this.state = {
       isLoading: true,
+      signUp: false,
       token: '',
       signUpError: '',
       signUpFirstName:'',
@@ -41,6 +46,7 @@ class UserAccountDetails extends Component{
       signUpEmail: '',
       signUpPassword: ''
     };
+    console.log(props)
 
     // this.onTextBoxChangeSignUpEmail = this.onTextBoxChangeSignUpEmail.bind(this);
     // this.onTextBoxChangeSignUpPassword = this.onTextBoxChangeSignUpPassword.bind(this);
@@ -63,17 +69,19 @@ class UserAccountDetails extends Component{
     const token = getFromStorage('mainapp');
     if(token){
       fetch('api/user/verify?token=' + token)
-        .then(res => res.json())
+        // .then(res => res.json())
         .then(json => {
           if(json.success){
             this.setState({
               token,
-              isLoading:false
+              isLoading:false,
+              signUp:true
             });
           }
           else{
             this.setState({
-              isLoading: false
+              isLoading: false,
+              // signUp: true
             });
           }
         }
@@ -109,7 +117,8 @@ class UserAccountDetails extends Component{
         signUpState,
         signUpCountry,
         signUpPincode,
-        signUpDescription
+        signUpDescription,
+        signUp
       } = this.state
 
       this.setState({
@@ -139,10 +148,11 @@ class UserAccountDetails extends Component{
       // .then((res => res.json())
       .then(json => {
         console.log('json', json);
-        if(json.success){
+        if(json.status === 200){
           this.setState({
             signUpError: json.message,
             isLoading: false,
+            signUp: true,
             signUpAccountType : '',
             signUpAddress: '',
             signUpCity : '',
@@ -156,6 +166,7 @@ class UserAccountDetails extends Component{
             signUpPincode : '',
             signUpState : '',
           });
+          this.props.store.setUserId(json.user_id)
         }
         else{
           this.setState({
@@ -180,11 +191,17 @@ class UserAccountDetails extends Component{
       signUpLastName,
       signUpMobile,
       signUpEmail,
-      signUpPassword
+      signUpPassword,
+      signUp
     } = this.state;
 
     if(isLoading){
       return(<div><p>Loading...</p></div>);
+    }
+    
+    if (signUp) {
+      // console.log(isLoggedIn)
+      return <Redirect to='/login' />
     }
     if(!token){
      return(
@@ -193,9 +210,9 @@ class UserAccountDetails extends Component{
           <h6 className="m-0"></h6>
           {/*<h6 className="m-0">{title}</h6>*/}
         </CardHeader>
-        <ListGroup flush>
-          <ListGroupItem className="p-3">
-            <Row>
+        <ListGroup flush >
+          <ListGroupItem  md = "6" className="p-3">
+            <Row  md = "6">
               <Col>
                 <Form>
                   <Row>
