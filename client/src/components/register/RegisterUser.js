@@ -18,6 +18,8 @@ import {
   Button
 } from "shards-react";
 
+import store from '../../flux/store.js'
+
 import{
   getFromStorage,
   setInStorage
@@ -166,7 +168,6 @@ class UserAccountDetails extends Component{
             signUpPincode : '',
             signUpState : '',
           });
-          this.props.store.setUserId(json.user_id)
         }
         else{
           this.setState({
