@@ -5,8 +5,15 @@ import PageTitle from "../components/common/PageTitle";
 import UserDetails from "../components/user-profile-lite/UserDetails";
 import UserAccountDetails from "../components/user-profile-lite/UserAccountDetails";
 
-const UserProfileLite = () => (
-  <Container fluid className="main-content-container px-4">
+class UserProfileLite extends React.Component{
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+    let props = this.props
+    return (  
+    <Container fluid className="main-content-container px-4">
     <Row noGutters className="page-header py-4">
       <PageTitle title="User Profile" subtitle="Overview" md="12" className="ml-sm-auto mr-sm-auto" />
     </Row>
@@ -15,10 +22,10 @@ const UserProfileLite = () => (
         <UserDetails />
       </Col>
       <Col lg="8">
-        <UserAccountDetails />
+        <UserAccountDetails {...props}/>
       </Col>
     </Row>
-  </Container>
-);
-
+  </Container>)
+  }
+}
 export default UserProfileLite;

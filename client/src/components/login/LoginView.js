@@ -1,5 +1,5 @@
 import React , {Component} from "react";
-import {login} from './login_helper.js';
+// import {login} from './login_helper.js';
 import PropTypes from "prop-types";
 import {Redirect} from 'react-router-dom';
 import {
@@ -23,11 +23,15 @@ import{
   getFromStorage,
   setInStorage
 } from "../../utils/storage.js";
+import store from '../../flux/store.js'
+
 
 
 class UserAccountDetails extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+    console.log("Props are")
+    console.log(props)
     this.state = {
       isLoading: true,
       token: '',
@@ -48,13 +52,16 @@ class UserAccountDetails extends Component{
     if(obj && obj.token){
       const { token } = obj;
       fetch('api/user/verify?token=' + token)
-        .then(res => res.json())
+        .then(res => res.text())
         .then(json => {
-          if(json.success){
+          // console.log(json)
+          if(json.success){ 
             this.setState({
               token,
               isLoading:false
             });
+            
+            console.log(json)
           }
           else{
             this.setState({
@@ -111,9 +118,11 @@ class UserAccountDetails extends Component{
           password: signInPassword
         }),
       })
-      // .then((res => res.json())
+      .then((res => res.json()))
       .then(json => {
-        if(json.status === 200){
+        console.log(json)
+        // console.log(json.json())
+        if(json.success){
           setInStorage('mainapp', { token: json.token });
           this.setState({
             signInError: json.message,
@@ -123,7 +132,9 @@ class UserAccountDetails extends Component{
             token : json.token,
             isLoggedIn : true
           });
-          
+          console.log(this.props)
+          console.log(json)
+          this.props.store.setUserId(json.user_id)
         }
         else{
           this.setState({
@@ -131,7 +142,7 @@ class UserAccountDetails extends Component{
             isLoading: false
           });
         }
-      });
+      })
   }
   
   handleChange = name => event => {
@@ -222,7 +233,7 @@ class UserAccountDetails extends Component{
                       to={{
                         pathname: "/blog-overview",
                         state: { referrer: '/login' }
-                      }}
+                   z   }}
                     />*/}
                   </Form>
                 </Col>

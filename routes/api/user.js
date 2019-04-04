@@ -16,6 +16,9 @@ router.post('/register', register);
 router.post('/signin', signin);
 router.get('/verify', verify);
 router.get('/logout', logout);
+router.get('/:user_id', user);
+
+
 
 function register( req, res, next) {
     var { body } = req;
@@ -115,7 +118,7 @@ function register( req, res, next) {
         } else if (previousUsers.length > 0){
             return res.send({
                 success: false,
-                message: 'Email already exists.' 
+                message: 'Email already exists.'
             });
         }
     });
@@ -152,11 +155,12 @@ function register( req, res, next) {
                 message: 'Server Error.' 
             });
          } else {
-            return res.send({
-                success: true,
-                message: 'Signed up.' 
-            });
-         }
+                
+                return res.send({
+                    success: true,
+                    message: 'Signed up.'
+                });
+            }
      });
 } // that slash represents the api/user
 
@@ -226,7 +230,8 @@ function signin (req, res, next){
                     return res.send({
                         success: true,
                         message: 'Valid sign in',
-                        token: doc._id
+                        token: doc._id,
+                        user_id: users._id
                     }); 
                 }    
             })
@@ -237,7 +242,9 @@ function signin (req, res, next){
 function verify (req, res, next){
     const { query } = req;
     const { token } = query;
-
+    
+    // const user_id;
+    // UserSession.user_id = user_id;
     UserSession.find({
         _id : token,
         isDeleted : false
@@ -248,7 +255,7 @@ function verify (req, res, next){
                 message: "Error: server error"
             });
         }
-        if(sessions.length != 1){
+        if(sessions.length === 1){
             return res.send({
                 success: false,
                 message: "Error: Invalid"
@@ -257,7 +264,8 @@ function verify (req, res, next){
         else{
             return res.send({
                 success: true,
-                message: "verified"
+                message: "Success",
+                user_id: sessions.user_id
             });
         }
     });
@@ -288,5 +296,28 @@ function logout (req, res, next){
         }
     });
 }
+//get user by id
+function user (req, res, next){
+    // console.log(req)
+    const { user_id } = req.params;
+    // const { user_id } = query;
 
+    const userSession = new UserSession();
+    userSession.user_id = user_id;
+    console.log(user_id)
+    User.findById(user_id, (err , user) => {
+        if(err){
+            return res.send({
+                success: false,
+                message: "Error: server error"
+            });
+        }
+        else{
+            return res.send({
+                success: true,
+                message: "good"
+            }).json(user);
+        }
+    });
+}
 module.exports = router;

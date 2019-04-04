@@ -26,6 +26,8 @@ import{
 class UserAccountDetails extends Component{
   constructor(props){
     super(props);
+    console.log("Props are")
+    console.log(props)
     this.state = {
       isLoading: true,
       signUp: false,
@@ -44,6 +46,7 @@ class UserAccountDetails extends Component{
       signUpEmail: '',
       signUpPassword: ''
     };
+    console.log(props)
 
     // this.onTextBoxChangeSignUpEmail = this.onTextBoxChangeSignUpEmail.bind(this);
     // this.onTextBoxChangeSignUpPassword = this.onTextBoxChangeSignUpPassword.bind(this);
@@ -163,6 +166,7 @@ class UserAccountDetails extends Component{
             signUpPincode : '',
             signUpState : '',
           });
+          this.props.store.setUserId(json.user_id)
         }
         else{
           this.setState({
@@ -197,7 +201,7 @@ class UserAccountDetails extends Component{
     
     if (signUp) {
       // console.log(isLoggedIn)
-      return <Redirect to='/blog-overview' />
+      return <Redirect to='/login' />
     }
     if(!token){
      return(
@@ -206,9 +210,9 @@ class UserAccountDetails extends Component{
           <h6 className="m-0"></h6>
           {/*<h6 className="m-0">{title}</h6>*/}
         </CardHeader>
-        <ListGroup flush>
-          <ListGroupItem className="p-3">
-            <Row>
+        <ListGroup flush >
+          <ListGroupItem  md = "6" className="p-3">
+            <Row  md = "6">
               <Col>
                 <Form>
                   <Row>
