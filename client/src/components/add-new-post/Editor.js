@@ -3,12 +3,11 @@ import {addNewPost} from './add-new-post_helper.js';
 
 import PropTypes from "prop-types";
 import {
-
- 
   Button,
   InputGroup,
   InputGroupAddon,
-  
+  Row,
+  Col,
   FormCheckbox
   
 } from "shards-react";
@@ -71,8 +70,11 @@ class Editor extends Component{
           <Form className="add-new-post">
             <FormInput size="lg"  className="mb-3" placeholder="Your Idea Title" />
             <ReactQuill placeholder="Describe your idea here. The funding recieved will depend heavily on how well the idea is described here." className="add-new-post__editor mb-1" />
-            <br></br><p>Upload images to pitch your idea</p>
-            <FormInput type="file" id="image" placeholder=""></FormInput><br></br>
+            <br></br>
+            <p>Upload images to pitch your idea</p>
+            <FormInput type="file" id="image" placeholder=""></FormInput>
+            <br></br>
+            <p>Select sector</p>
               <FormCheckbox className="mb-1" value="Business" >
                 Business
               </FormCheckbox>
@@ -86,11 +88,17 @@ class Editor extends Component{
                 Other sectors
               </FormCheckbox>
 
-              <br></br><br></br>
+              <br></br>
+              <Row>
+                <Col md="4"><FormInput size="lg" placeholder="Enter the amount to be raised in Rupees" /></Col>
+                <Col md="6"></Col>
+              </Row>
+              <br></br>
+              <br></br>
                   <div
             className="bg-primary text-white text-center rounded p-3 "
             style={{ boxShadow: "inset 0 0 5px rgba(0,0,0,.2)" }}>
-              Post Your Idea!
+              Start your Fundraising Journey!
             </div>
           </Form>
         </CardBody>

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from "shards-react";
 
 import PageTitle from "../components/common/PageTitle";
+import FundraiserDetails from "../components/fundraiser/FundraiserDetails";
 
 class UserProfileLite extends Component{
   
@@ -12,7 +13,7 @@ class UserProfileLite extends Component{
           <PageTitle title="Fundraiser Details" subtitle="" md="12" className="ml-sm-auto mr-sm-auto" />
         </Row>
         <Row>
-          <Col lg="3"></Col>
+          <FundraiserDetails />
         </Row>
       </Container>
     )
