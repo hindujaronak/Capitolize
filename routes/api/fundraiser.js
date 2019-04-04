@@ -21,7 +21,6 @@ const upload = multer({
 const Fundraiser = require('../../models/FundraiserSchema'); //schema add kiya
 
 router.post('/addFundraiser', upload.single('image'), (req,res) => {
-    // console.log(req.file);
     const newFundraiser = new Fundraiser({
         title: req.body.title,
         description: req.body.description,
@@ -48,8 +47,7 @@ function getAllFundraisers(req, res, next){
                     }
                 )
             }
-        }, 
-        docs);
+        });
 
         return res.send({
             success: true,
