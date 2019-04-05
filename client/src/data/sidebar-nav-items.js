@@ -22,11 +22,6 @@ export default function() {
       to: "/blog-posts",
     },
     {
-      title: "Login",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/login",
-    },
-    {
       title: "Register",
       htmlBefore: '<i class="material-icons">error</i>',
       to: "/register",

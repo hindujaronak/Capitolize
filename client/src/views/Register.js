@@ -14,11 +14,8 @@ class UserProfileLite extends Component{
           <PageTitle title="Registration" subtitle="Select your identity" md="12" className="ml-sm-auto mr-sm-auto" />
         </Row>
         <Row>
-          <Col lg="12">
-          </Col>
-        </Row>
-        <Row>
-          <Col lg="12">
+          <Col md="3"></Col>
+          <Col md="6">
             <RegisterUser {...props}/>
           </Col>
         </Row>

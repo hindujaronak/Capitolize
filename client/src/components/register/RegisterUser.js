@@ -206,9 +206,8 @@ class UserAccountDetails extends Component{
     }
     if(!token){
      return(
-      <Card small className="mb-4">
+      <Card small className="mb-3">
         <CardHeader className="border-bottom">
-          <h6 className="m-0"></h6>
           {/*<h6 className="m-0">{title}</h6>*/}
         </CardHeader>
         <ListGroup flush >
@@ -218,19 +217,23 @@ class UserAccountDetails extends Component{
                 <Form>
                   <Row>
                     <Col md="12" align="center">
-                      <h3>What role do you want to register as?</h3>
-                    </Col>
-                  </Row>
+                      <Row>
+                        <Col md="12" align="center">
+                          <h3>What role do you want to register as?</h3>
+                        </Col>
+                      </Row>
 
-                  <Row>
-                    <Col mod="4">
-                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 1} onChange = {this.handleChange('signUpAccountType')} /> An Official
-                    </Col>
-                    <Col mod="4">
-                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 2} onChange = {this.handleChange('signUpAccountType')} /> A User
-                    </Col>
-                    <Col mod="4">
-                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 0} onChange = {this.handleChange('signUpAccountType')} /> A Bank
+                      <Row>
+                        <Col mod="4">
+                          <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 1} onChange = {this.handleChange('signUpAccountType')} /> An Official
+                        </Col>
+                        <Col mod="4">
+                          <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 2} onChange = {this.handleChange('signUpAccountType')} /> A User
+                        </Col>
+                        <Col mod="4">
+                          <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 0} onChange = {this.handleChange('signUpAccountType')} /> A Bank
+                        </Col>
+                      </Row>
                     </Col>
                   </Row>
 
@@ -369,7 +372,14 @@ class UserAccountDetails extends Component{
                       <FormTextarea id="feDescription" name="signUpDescription" defaultValue = {this.signUpDescription} onChange = {this.handleChange('signUpDescription')} rows="5" />
                     </Col>
                   </Row>
-                  <Button theme="accent" onClick = {() => this.onSignUp()}>Register Account</Button>
+                  <Row>
+                    <Col md="6" align="left">
+                      <Button theme="accent" onClick = {() => this.onSignUp()}>Register Account</Button>
+                    </Col>
+                    <Col md="6" align="right">
+                      <p>Already have an account? <Button theme="accent" href="/login">Login Here!</Button></p>
+                    </Col>
+                  </Row>
                 </Form>
               </Col>
             </Row>

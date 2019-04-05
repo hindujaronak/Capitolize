@@ -169,7 +169,7 @@ class UserAccountDetails extends Component{
     // }
     if(!token){
       return(
-        <Card small className="-3">
+        <Card small className="mb-3">
           <CardHeader className="border-bottom">
             {/*<h6 className="m-0">{title}</h6>*/}
             <h6 className="m-0">Login</h6>
@@ -226,8 +226,14 @@ class UserAccountDetails extends Component{
                       </Col>
                     </Row>
                     
-                    
-                    <Button theme="accent" onClick={this.onLogin}>Login</Button>
+                    <Row>
+                      <Col md="6" align="left">
+                        <Button theme="accent" onClick={this.onLogin}>Login</Button>
+                      </Col>
+                      <Col md="6" align="right">
+                        <p>Want to create an account? <Button theme="accent" href="/register">Register here!</Button></p>
+                      </Col>
+                    </Row>
                     {/*<Redirect
                       to={{
                         pathname: "/blog-overview",
