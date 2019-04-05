@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 // Layout Types
-import { DefaultLayout } from "./layouts";
+import { DefaultLayout, NewLayout } from "./layouts/";
 
 // Route Views
 import BlogOverview from "./views/BlogOverview";
@@ -25,17 +25,17 @@ export default [
   },
   {
     path: "/blog-overview",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: BlogOverview
   },
   {
     path: "/user-profile-lite",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: UserProfileLite
   },
   {
     path: "/add-new-idea",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: AddNewPost
   },
   {
@@ -45,17 +45,17 @@ export default [
   },
   {
     path: "/components-overview",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: ComponentsOverview
   },
   {
     path: "/tables",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: Tables
   },
   {
     path: "/blog-posts",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: BlogPosts
   },
   {
@@ -70,7 +70,7 @@ export default [
   },
   {
     path: "/fundraiser",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: Fundraiser
   }
 ];

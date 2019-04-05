@@ -208,7 +208,6 @@ class UserAccountDetails extends Component{
      return(
       <Card small className="mb-4">
         <CardHeader className="border-bottom">
-          <h6 className="m-0"></h6>
           {/*<h6 className="m-0">{title}</h6>*/}
         </CardHeader>
         <ListGroup flush >
@@ -217,20 +216,30 @@ class UserAccountDetails extends Component{
               <Col>
                 <Form>
                   <Row>
-                    <Col md="12" align="center">
-                      <h3>What role do you want to register as?</h3>
-                    </Col>
-                  </Row>
+                    
+                    <Col md="9">
+                      <Row>
+                        <Col md="12" align="center">
+                          <h3>What role do you want to register as?</h3>
+                        </Col>
+                      </Row>
 
-                  <Row>
-                    <Col mod="4">
-                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 1} onChange = {this.handleChange('signUpAccountType')} /> An Official
+                      <Row>
+                        <Col mod="4">
+                          <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 1} onChange = {this.handleChange('signUpAccountType')} /> An Official
+                        </Col>
+                        <Col mod="4">
+                          <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 2} onChange = {this.handleChange('signUpAccountType')} /> A User
+                        </Col>
+                        <Col mod="4">
+                          <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 0} onChange = {this.handleChange('signUpAccountType')} /> A Bank
+                        </Col>
+                      </Row>
                     </Col>
-                    <Col mod="4">
-                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 2} onChange = {this.handleChange('signUpAccountType')} /> A User
-                    </Col>
-                    <Col mod="4">
-                      <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 0} onChange = {this.handleChange('signUpAccountType')} /> A Bank
+
+                    <Col md="3" align="right">
+                      <p>Already have an account?</p>
+                      <Button theme="accent" href="/login">Login Here!</Button>
                     </Col>
                   </Row>
 
