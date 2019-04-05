@@ -26,43 +26,22 @@ class UserAccountDetails extends Component{
     this.state = {
       isLoading: true,
       token: '',
-      user_id: this.props.store.getUserId()
+      user_id: this.props.store.getUserId(),
+      fname: '',
+      lname:'',
+      pincode:'',
+      description:'',
+      email : '',
+      mobile: '',
+      address: '',
+      city: '',
+      state: '',
+      country:''
     };
 
   }
   componentDidMount(){
     this.setState({isLoading: false})
-    // const obj = getFromStorage('mainapp');
-    
-    // if(obj && obj.token){
-    //   const { token } = obj;
-    //   fetch('api/user/verify?token=' + token)
-    //     .then(res => res.json())
-    //     .then(json => {
-    //       if(json.success){
-    //         this.setState({
-    //           token,
-    //           isLoading:false
-    //         });
-    //       }
-    //       else{
-    //         this.setState({
-    //           isLoading: false
-    //         });
-    //       }
-    //     }
-    //   );
-    // }
-    // else{
-    //   this.setState({
-    //     isLoading: false
-    //   });
-    // }
-    
-     // how will we fetch user id from session
-      this.setState({
-        isLoading : true
-      });
       
       fetch('http://localhost:5000/api/user/' + this.state.user_id, {
         method: 'GET', 
@@ -71,11 +50,11 @@ class UserAccountDetails extends Component{
         },
       })
       // .then((res => res.json())
-      .then(json => {
-        console.log('json', json);
+      .then((json) => {
+        // console.log('json', json);
         if(json.status === 200){
           this.setState({
-            
+            jsons: json.jsons
           });
         }
         else{
@@ -101,20 +80,20 @@ class UserAccountDetails extends Component{
                     {/* First Name */}
                     <Col md="6" className="form-group">
                       <label htmlFor="feFirstName">First Name</label>
-                      <FormInput
+                      <FormInput disabled
                         id="feFirstName"
                         placeholder="First Name"
-                        value="Bhavika"
+                        value={this.state.jsons.firstname}
                         onChange={() => {}}
                       />
                     </Col>
                     {/* Last Name */}
                     <Col md="6" className="form-group">
                       <label htmlFor="feLastName">Last Name</label>
-                      <FormInput
+                      <FormInput disabled
                         id="feLastName"
                         placeholder="Last Name"
-                        value="Shahani"
+                        value={this.state.jsons.lastname}
                         onChange={() => {}}
                       />
                     </Col>
@@ -123,34 +102,23 @@ class UserAccountDetails extends Component{
                     {/* Email */}
                     <Col md="6" className="form-group">
                       <label htmlFor="feEmail">Email</label>
-                      <FormInput
+                      <FormInput disabled
                         type="email"
                         id="feEmail"
                         placeholder="Email Address"
-                        value="shahani@capitolize.com"
+                        value={this.state.jsons.email_id}
                         onChange={() => {}}
                         autoComplete="email"
                       />
                     </Col>
-                    {/* Password */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="fePassword">Password</label>
-                      <FormInput
-                        type="password"
-                        id="fePassword"
-                        placeholder="Password"
-                        value="EX@MPL#P@$$w0RD"
-                        onChange={() => {}}
-                        autoComplete="current-password"
-                      />
-                    </Col>
+                    
                   </Row>
                   <FormGroup>
                     <label htmlFor="feAddress">Address</label>
-                    <FormInput
+                    <FormInput disabled
                       id="feAddress"
                       placeholder="Address"
-                      value="1234 Main St."
+                      value={this.state.jsons.address}
                       onChange={() => {}}
                     />
                   </FormGroup>
@@ -158,26 +126,30 @@ class UserAccountDetails extends Component{
                     {/* City */}
                     <Col md="6" className="form-group">
                       <label htmlFor="feCity">City</label>
-                      <FormInput
+                      <FormInput disabled
                         id="feCity"
                         placeholder="City"
+                        value = {this.state.jsons.city}
                         onChange={() => {}}
                       />
                     </Col>
                     {/* State */}
                     <Col md="4" className="form-group">
                       <label htmlFor="feInputState">State</label>
-                      <FormSelect id="feInputState">
-                        <option>Choose...</option>
-                        <option>...</option>
-                      </FormSelect>
+                      <FormInput disabled
+                        id="feState"
+                        placeholder="State"
+                        value = {this.state.jsons.state}
+                        onChange={() => {}}
+                      />
                     </Col>
                     {/* Zip Code */}
                     <Col md="2" className="form-group">
                       <label htmlFor="feZipCode">Zip</label>
-                      <FormInput
+                      <FormInput disabled
                         id="feZipCode"
                         placeholder="Zip"
+                        value={this.state.jsons.pincode}
                         onChange={() => {}}
                       />
                     </Col>
@@ -186,10 +158,9 @@ class UserAccountDetails extends Component{
                     {/* Description */}
                     <Col md="12" className="form-group">
                       <label htmlFor="feDescription">Description</label>
-                      <FormTextarea id="feDescription" rows="5" />
+                      <FormTextarea disabled id="feDescription" value= {this.state.jsons.description} rows="5" />
                     </Col>
                   </Row>
-                  <Button theme="accent">Update Account</Button>
                 </Form>
               </Col>
             </Row>

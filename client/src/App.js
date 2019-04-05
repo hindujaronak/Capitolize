@@ -21,7 +21,9 @@ export default () => (
                 let props2 = {...props, store}
                 console.log(props2)
                 return (
-                    <Register {...props}/>
+                  <route.layout>
+                    <route.component {...props2}/>
+                  </route.layout>
                 );
               })}
             />

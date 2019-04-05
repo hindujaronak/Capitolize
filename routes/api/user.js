@@ -304,7 +304,7 @@ function user (req, res, next){
 
     const userSession = new UserSession();
     userSession.user_id = user_id;
-    console.log(user_id)
+    // console.log(user_id)
     User.findById(user_id, (err , user) => {
         if(err){
             return res.send({
@@ -313,10 +313,11 @@ function user (req, res, next){
             });
         }
         else{
-            return res.send({
-                success: true,
-                message: "good"
-            }).json(user);
+            return res.json(user);
+            // return res.send({
+            //     success: true,
+            //     message: "good"
+            // }).json(user);
         }
     });
 }
