@@ -206,7 +206,7 @@ class UserAccountDetails extends Component{
     }
     if(!token){
      return(
-      <Card small className="mb-4">
+      <Card small className="mb-3">
         <CardHeader className="border-bottom">
           {/*<h6 className="m-0">{title}</h6>*/}
         </CardHeader>
@@ -216,8 +216,7 @@ class UserAccountDetails extends Component{
               <Col>
                 <Form>
                   <Row>
-                    
-                    <Col md="9">
+                    <Col md="12" align="center">
                       <Row>
                         <Col md="12" align="center">
                           <h3>What role do you want to register as?</h3>
@@ -235,11 +234,6 @@ class UserAccountDetails extends Component{
                           <input type="radio" name="signUpAccountType" value={this.state.signUpAccountType = 0} onChange = {this.handleChange('signUpAccountType')} /> A Bank
                         </Col>
                       </Row>
-                    </Col>
-
-                    <Col md="3" align="right">
-                      <p>Already have an account?</p>
-                      <Button theme="accent" href="/login">Login Here!</Button>
                     </Col>
                   </Row>
 
@@ -378,7 +372,14 @@ class UserAccountDetails extends Component{
                       <FormTextarea id="feDescription" name="signUpDescription" defaultValue = {this.signUpDescription} onChange = {this.handleChange('signUpDescription')} rows="5" />
                     </Col>
                   </Row>
-                  <Button theme="accent" onClick = {() => this.onSignUp()}>Register Account</Button>
+                  <Row>
+                    <Col md="6" align="left">
+                      <Button theme="accent" onClick = {() => this.onSignUp()}>Register Account</Button>
+                    </Col>
+                    <Col md="6" align="right">
+                      <p>Already have an account? <Button theme="accent" href="/login">Login Here!</Button></p>
+                    </Col>
+                  </Row>
                 </Form>
               </Col>
             </Row>
