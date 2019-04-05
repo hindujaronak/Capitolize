@@ -49,8 +49,7 @@ function getAllFundraisers(req, res, next){
                     }
                 )
             }
-        }, 
-        docs);
+        });
 
         return res.send({
             success: true,

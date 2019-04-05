@@ -27,21 +27,13 @@ class UserAccountDetails extends Component{
       isLoading: true,
       token: '',
       user_id: this.props.store.getUserId(),
-      fname: '',
-      lname:'',
-      pincode:'',
-      description:'',
-      email : '',
-      mobile: '',
-      address: '',
-      city: '',
-      state: '',
-      country:''
+      responses:[]
     };
 
   }
   componentDidMount(){
     this.setState({isLoading: false})
+    console.log("user_id is " + this.state.user_id)
       
       fetch('http://localhost:5000/api/user/' + this.state.user_id, {
         method: 'GET', 
@@ -49,125 +41,126 @@ class UserAccountDetails extends Component{
           'Content-Type': 'application/json'
         },
       })
-      // .then((res => res.json())
-      .then((json) => {
-        // console.log('json', json);
-        if(json.status === 200){
-          this.setState({
-            jsons: json.jsons
-          });
-        }
-        else{
-          this.setState({
-            isLoading: false
-          });
-        }
-      });
-
+      .then(res => res.json())
+      .then(data => this.setState({ responses: data.responses }));
   }
   render(){
-    return(
-      <Card small className="mb-4">
-        <CardHeader className="border-bottom">
-          {/*<h6 className="m-0">{this.props.title}</h6>*/}
-        </CardHeader>
-        <ListGroup flush>
-          <ListGroupItem className="p-3">
-            <Row>
-              <Col>
-                <Form>
-                  <Row form>
-                    {/* First Name */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="feFirstName">First Name</label>
-                      <FormInput disabled
-                        id="feFirstName"
-                        placeholder="First Name"
-                        value={this.state.jsons.firstname}
-                        onChange={() => {}}
-                      />
-                    </Col>
-                    {/* Last Name */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="feLastName">Last Name</label>
-                      <FormInput disabled
-                        id="feLastName"
-                        placeholder="Last Name"
-                        value={this.state.jsons.lastname}
-                        onChange={() => {}}
-                      />
+    // (jsons.length > 0) ? jsons.map( (json) => {
+      const {responses} = this.state;
+          return(
+            <Card small className="mb-4"> 
+              <CardHeader className="border-bottom">
+                {/*<h6 className="m-0">{this.props.title}</h6>*/}
+              </CardHeader>
+              <ListGroup>
+                {this.state.responses.map( (response) =>
+                <ListGroupItem className="p-3">
+                  <Row>
+                    <Col>
+                      <Form>
+                        <Row form>
+                          {/* First Name */}
+                          <Col md="6" className="form-group">
+                            <label htmlFor="feFirstName">First Name</label> 
+                            <FormInput disabled
+                              id="feFirstName"
+                              placeholder="First Name"
+                              value={response.firstname}
+                              onChange={() => {}}
+                            />
+                          </Col>
+                          {/* Last Name */}
+                          <Col md="6" className="form-group">
+                            <label htmlFor="feLastName">Last Name</label>
+                            <FormInput disabled
+                              id="feLastName"
+                              placeholder="Last Name"
+                              value={response.lastname}
+                              onChange={() => {}}
+                            />
+                          </Col>
+                        </Row>
+                        <Row form>
+                          {/* Email */}
+                          <Col md="6" className="form-group">
+                            <label htmlFor="feEmail">Email</label>
+                            <FormInput disabled
+                              type="email"
+                              id="feEmail"
+                              placeholder="Email Address"
+                              value={response.email_id}
+                              onChange={() => {}}
+                              autoComplete="email"
+                            />
+                          </Col>
+                          
+                        </Row>
+                        <FormGroup>
+                          <label htmlFor="feAddress">Address</label>
+                          <FormInput disabled
+                            id="feAddress"
+                            placeholder="Address"
+                            value={response.address}
+                            onChange={() => {}}
+                          />
+                        </FormGroup>
+                        <Row form>
+                          {/* City */}
+                          <Col md="6" className="form-group">
+                            <label htmlFor="feCity">City</label>
+                            <FormInput disabled
+                              id="feCity"
+                              placeholder="City"
+                              value = {response.city}
+                              onChange={() => {}}
+                            />
+                          </Col>
+                          {/* State */}
+                          <Col md="4" className="form-group">
+                            <label htmlFor="feInputState">State</label>
+                            <FormInput disabled
+                              id="feState"
+                              placeholder="State"
+                              value = {response.state}
+                              onChange={() => {}}
+                            />
+                          </Col>
+                          {/*country*/}
+                          <Col md="4" className="form-group">
+                            <label htmlFor="feInputCountry">State</label>
+                            <FormInput disabled
+                              id="feCountry"
+                              placeholder="Country"
+                              value = {response.country}
+                              onChange={() => {}}
+                            />
+                          </Col>
+                          {/* Zip Code */}
+                          <Col md="2" className="form-group">
+                            <label htmlFor="feZipCode">Zip</label>
+                            <FormInput disabled
+                              id="feZipCode"
+                              placeholder="Zip"
+                              value={response.pincode}
+                              onChange={() => {}}
+                            />
+                          </Col>
+                        </Row>
+                        <Row form>
+                          {/* Description */}
+                          <Col md="12" className="form-group">
+                            <label htmlFor="feDescription">Description</label>
+                            <FormTextarea disabled id="feDescription" value= {response.description} rows="5" />
+                          </Col>
+                        </Row>
+                      </Form>
                     </Col>
                   </Row>
-                  <Row form>
-                    {/* Email */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="feEmail">Email</label>
-                      <FormInput disabled
-                        type="email"
-                        id="feEmail"
-                        placeholder="Email Address"
-                        value={this.state.jsons.email_id}
-                        onChange={() => {}}
-                        autoComplete="email"
-                      />
-                    </Col>
-                    
-                  </Row>
-                  <FormGroup>
-                    <label htmlFor="feAddress">Address</label>
-                    <FormInput disabled
-                      id="feAddress"
-                      placeholder="Address"
-                      value={this.state.jsons.address}
-                      onChange={() => {}}
-                    />
-                  </FormGroup>
-                  <Row form>
-                    {/* City */}
-                    <Col md="6" className="form-group">
-                      <label htmlFor="feCity">City</label>
-                      <FormInput disabled
-                        id="feCity"
-                        placeholder="City"
-                        value = {this.state.jsons.city}
-                        onChange={() => {}}
-                      />
-                    </Col>
-                    {/* State */}
-                    <Col md="4" className="form-group">
-                      <label htmlFor="feInputState">State</label>
-                      <FormInput disabled
-                        id="feState"
-                        placeholder="State"
-                        value = {this.state.jsons.state}
-                        onChange={() => {}}
-                      />
-                    </Col>
-                    {/* Zip Code */}
-                    <Col md="2" className="form-group">
-                      <label htmlFor="feZipCode">Zip</label>
-                      <FormInput disabled
-                        id="feZipCode"
-                        placeholder="Zip"
-                        value={this.state.jsons.pincode}
-                        onChange={() => {}}
-                      />
-                    </Col>
-                  </Row>
-                  <Row form>
-                    {/* Description */}
-                    <Col md="12" className="form-group">
-                      <label htmlFor="feDescription">Description</label>
-                      <FormTextarea disabled id="feDescription" value= {this.state.jsons.description} rows="5" />
-                    </Col>
-                  </Row>
-                </Form>
-              </Col>
-            </Row>
-          </ListGroupItem>
-        </ListGroup>
-      </Card>
-    );
+                </ListGroupItem>
+                )}
+              </ListGroup>
+            </Card>
+          );
   }
 }
 UserAccountDetails.propTypes = {
