@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "shards-react";
+import PropTypes from "prop-types";
 
 import PageTitle from "../components/common/PageTitle";
 import UserDetails from "../components/user-profile-lite/UserDetails";

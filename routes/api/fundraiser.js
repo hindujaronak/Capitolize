@@ -47,7 +47,21 @@ function addFundraiser (req,res, next) {
         updatedAt: req.body.updatedAt,
         amount: req.body.amount        
     });    
-    newFundraiser.save()
+    newFundraiser.save((err, fundraiser) => {
+        if(err){
+            return res.send({
+                error: console.log(err),
+                success: false,
+                message: 'Server Error.' 
+            });
+         } else {
+                
+                return res.send({
+                    success: true,
+                    message: 'Added Data.'
+                });
+            }
+    })
     .then(fundraiser => console.log(res.json(fundraiser)));
 };
 router.get('/allFundraisers', getAllFundraisers);
