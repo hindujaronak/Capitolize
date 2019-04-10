@@ -7,7 +7,7 @@ const FundraiserSchema= new Schema({
     sector: Number,
     createdAt: Date,
     updatedAt: Date,
-    accountType: Number
+    amount: Number
 });
  
 //Create schema

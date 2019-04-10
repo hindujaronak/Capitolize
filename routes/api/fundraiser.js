@@ -45,7 +45,7 @@ function addFundraiser (req,res, next) {
         sector: req.body.sector,
         createdAt: req.body.createdAt,
         updatedAt: req.body.updatedAt,
-        accountType: req.body.accountType        
+        amount: req.body.amount        
     });    
     newFundraiser.save()
     .then(fundraiser => console.log(res.json(fundraiser)));
