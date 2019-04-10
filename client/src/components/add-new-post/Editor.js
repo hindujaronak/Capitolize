@@ -93,12 +93,12 @@ class Editor extends Component{
               className="mb-3" 
               placeholder="Your Idea Title" 
               name="title" 
-              value={this.state.title} 
+              defaultValue={this.state.title} 
               onChange={this.handleChange('title')}/>
             <ReactQuill 
               placeholder="Describe your idea here. The funding recieved will depend heavily on how well the idea is described here." 
               className="add-new-post__editor mb-1" 
-              name="description" value={this.state.description} onChange={this.handleChange('description')}/>
+              name="description" defaultValue={this.state.description} />
             <br></br>
             <br></br>
             <p>Select sector</p>
@@ -123,16 +123,17 @@ class Editor extends Component{
                   size="lg" 
                   placeholder="Enter the amount to be raised in Rupees" 
                   name="amount" 
-                  value={this.state.amount} 
+                  defaultValue={this.state.amount} 
                   onChange={this.handleChange('amount')} /></Col>
               </Row>
               <br></br>
               <br></br>
-            <div
+            <button
               className="bg-primary text-white text-center rounded p-3 "
-              style={{ boxShadow: "inset 0 0 5px rgba(0,0,0,.2)" }}>
+              style={{ boxShadow: "inset 0 0 5px rgba(0,0,0,.2)" }}
+              onClick={this.onSubmit()}>
               Start your Fundraising Journey!
-            </div>
+            </button>
           </Form>
         </CardBody>
       </Card>
