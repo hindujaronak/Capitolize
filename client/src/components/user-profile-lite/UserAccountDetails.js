@@ -34,7 +34,7 @@ class UserAccountDetails extends Component{
     };
   }
   
-  componentDidMount(){
+  componentWillMount(){
     this.setState({isLoading: false})
     console.log("user_id is " + this.state.user_id)
       
