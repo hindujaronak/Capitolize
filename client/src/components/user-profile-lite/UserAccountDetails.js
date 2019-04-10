@@ -27,7 +27,7 @@ class UserAccountDetails extends Component{
       isLoading: true,
       token: '',
       user_id: this.props.store.getUserId(),
-      responses:[]
+      hits:[]
     };
   }
   
@@ -41,20 +41,20 @@ class UserAccountDetails extends Component{
           'Content-Type': 'application/json'
         },
       })
-      .then(res => res.json())
-      .then(data => this.setState({ responses: data.responses }));
+      // .then(res => res.json())
+      .then(data => this.setState({ hits: data.hits }));
   }
   
   render(){
     // (jsons.length > 0) ? jsons.map( (json) => {
-      const {responses} = this.state;
+      const {hits} = this.state;
           return(
             <Card small className="mb-4"> 
               <CardHeader className="border-bottom">
                 {/*<h6 className="m-0">{this.props.title}</h6>*/}
               </CardHeader>
               <ListGroup>
-                {this.state.responses.map( (response) =>
+                {hits.map((hit) =>
                 <ListGroupItem className="p-3">
                   <Row>
                     <Col>
@@ -66,7 +66,7 @@ class UserAccountDetails extends Component{
                             <FormInput disabled
                               id="feFirstName"
                               placeholder="First Name"
-                              value={response.firstname}
+                              value={hit.firstname}
                               onChange={() => {}}
                             />
                           </Col>
@@ -76,7 +76,7 @@ class UserAccountDetails extends Component{
                             <FormInput disabled
                               id="feLastName"
                               placeholder="Last Name"
-                              value={response.lastname}
+                              value={hit.lastname}
                               onChange={() => {}}
                             />
                           </Col>
@@ -89,7 +89,7 @@ class UserAccountDetails extends Component{
                               type="email"
                               id="feEmail"
                               placeholder="Email Address"
-                              value={response.email_id}
+                              value={hit.email_id}
                               onChange={() => {}}
                               autoComplete="email"
                             />
@@ -101,7 +101,7 @@ class UserAccountDetails extends Component{
                           <FormInput disabled
                             id="feAddress"
                             placeholder="Address"
-                            value={response.address}
+                            value={hit.address}
                             onChange={() => {}}
                           />
                         </FormGroup>
@@ -112,7 +112,7 @@ class UserAccountDetails extends Component{
                             <FormInput disabled
                               id="feCity"
                               placeholder="City"
-                              value = {response.city}
+                              value = {hit.city}
                               onChange={() => {}}
                             />
                           </Col>
@@ -122,7 +122,7 @@ class UserAccountDetails extends Component{
                             <FormInput disabled
                               id="feState"
                               placeholder="State"
-                              value = {response.state}
+                              value = {hit.state}
                               onChange={() => {}}
                             />
                           </Col>
@@ -132,7 +132,7 @@ class UserAccountDetails extends Component{
                             <FormInput disabled
                               id="feCountry"
                               placeholder="Country"
-                              value = {response.country}
+                              value = {hit.country}
                               onChange={() => {}}
                             />
                           </Col>
@@ -142,7 +142,7 @@ class UserAccountDetails extends Component{
                             <FormInput disabled
                               id="feZipCode"
                               placeholder="Zip"
-                              value={response.pincode}
+                              value={hit.pincode}
                               onChange={() => {}}
                             />
                           </Col>
@@ -151,7 +151,7 @@ class UserAccountDetails extends Component{
                           {/* Description */}
                           <Col md="12" className="form-group">
                             <label htmlFor="feDescription">Description</label>
-                            <FormTextarea disabled id="feDescription" value= {response.description} rows="5" />
+                            <FormTextarea disabled id="feDescription" value= {hit.description} rows="5" />
                           </Col>
                         </Row>
                       </Form>
