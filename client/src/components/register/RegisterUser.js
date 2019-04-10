@@ -48,21 +48,7 @@ class UserAccountDetails extends Component{
       signUpEmail: '',
       signUpPassword: ''
     };
-    console.log(props)
 
-    // this.onTextBoxChangeSignUpEmail = this.onTextBoxChangeSignUpEmail.bind(this);
-    // this.onTextBoxChangeSignUpPassword = this.onTextBoxChangeSignUpPassword.bind(this);
-    // this.onTextBoxChangeSignUpMobile = this.onTextBoxChangeSignUpMobile.bind(this);
-    // this.onTextBoxChangeSignUpAddress = this.onTextBoxChangeSignUpAddress.bind(this);
-    // this.onTextBoxChangeSignUpFirstName = this.onTextBoxChangeSignUpFirstName.bind(this);
-    // this.onTextBoxChangeSignUpLastName = this.onTextBoxChangeSignUpLastName.bind(this);
-    // this.onTextBoxChangeSignUpCity = this.onTextBoxChangeSignUpCity.bind(this);
-    // this.onTextBoxChangeSignUpCountry = this.onTextBoxChangeSignUpCountry.bind(this);
-    // this.onTextBoxChangeSignUpState = this.onTextBoxChangeSignUpState.bind(this);
-    // this.onTextBoxChangeSignUpDescription = this.onTextBoxChangeSignUpDescription.bind(this);
-    // this.onTextBoxChangeSignUpPincode = this.onTextBoxChangeSignUpPincode.bind(this);
-    // this.onTextBoxChangeSignUpAccountType = this.onTextBoxChangeSignUpAccountType.bind(this);
-    
     this.onSignUp = this.onSignUp.bind(this);
 
   }

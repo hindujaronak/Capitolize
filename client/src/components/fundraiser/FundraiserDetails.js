@@ -15,6 +15,10 @@ import {
   Progress,
   Button
 } from "shards-react";
+import{
+  getFromStorage,
+  setInStorage
+} from "../../utils/storage";
 
 const UserAccountDetails = ({ title }) => (
   <Row>
