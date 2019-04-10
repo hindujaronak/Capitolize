@@ -29,8 +29,8 @@ class UserAccountDetails extends Component{
       user_id: this.props.store.getUserId(),
       responses:[]
     };
-
   }
+  
   componentDidMount(){
     this.setState({isLoading: false})
     console.log("user_id is " + this.state.user_id)
@@ -44,6 +44,7 @@ class UserAccountDetails extends Component{
       .then(res => res.json())
       .then(data => this.setState({ responses: data.responses }));
   }
+  
   render(){
     // (jsons.length > 0) ? jsons.map( (json) => {
       const {responses} = this.state;

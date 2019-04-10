@@ -22,20 +22,34 @@ const type = upload.single('image');
 
 const Fundraiser = require('../../models/FundraiserSchema');
 
-router.post('/addFundraiser', type, (req,res) => {
+// router.post('/addFundraiser', type, (req,res) => {
+//     const newFundraiser = new Fundraiser({
+//         title: req.body.title,
+//         description: req.body.description,
+//         sector: req.body.sector,
+//         uploaded_image: req.file.path,
+//         createdAt: req.body.createdAt,
+//         updatedAt: req.body.updatedAt,
+//         accountType: req.body.accountType        
+//     });    
+//     newFundraiser.save()
+//     .then(fundraiser => console.log(res.json(fundraiser)));
+// }); // that slash represents the api/fundraiser
+
+router.post('/addFundraiser', addFundraiser);
+
+function addFundraiser (req,res, next) {
     const newFundraiser = new Fundraiser({
         title: req.body.title,
         description: req.body.description,
         sector: req.body.sector,
-        uploaded_image: req.file.path,
         createdAt: req.body.createdAt,
         updatedAt: req.body.updatedAt,
         accountType: req.body.accountType        
     });    
     newFundraiser.save()
     .then(fundraiser => console.log(res.json(fundraiser)));
-}); // that slash represents the api/fundraiser
-
+};
 router.get('/allFundraisers', getAllFundraisers);
 
 function getAllFundraisers(req, res, next){
