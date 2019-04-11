@@ -29,7 +29,8 @@ class UserAccountDetails extends Component{
       isLoading: true,
       token: '',
       user_id: this.props.store.getUserId(),
-      user : ''
+      hits:[],
+      data: ''
     };
   }
   
@@ -43,22 +44,25 @@ class UserAccountDetails extends Component{
           'Content-Type': 'application/json'
         },
       })
+<<<<<<< HEAD
       .then(res => res.json())
       .then(res => {
         this.setState({user : res})
         // console.log("user is" + this.state.user);
         return this.state.user;
       })
+=======
+      // .then(res => res.json())
+      .then(data => this.setState({ hits: data.hits }));
+      console.log("hits" + this.state.hits)
+      console.log("data" + this.state.data)
+>>>>>>> Testing
   }
   
   render(){
     // (jsons.length > 0) ? jsons.map( (json) => {
-        const user = this.state.user;
-        var users;
-
-        // console.log(user);
-        
-          return(   
+      const {data, hits} = this.state;
+          return(
             <Card small className="mb-4"> 
               <CardHeader className="border-bottom">
                 {/*<h6 className="m-0">{this.props.title}</h6>*/}
@@ -66,133 +70,146 @@ class UserAccountDetails extends Component{
               <ListGroup>
                 
                 <ListGroupItem className="p-3">
+<<<<<<< HEAD
                   {/*{console.log(this.state.user)}*/}
                 
            
+=======
+>>>>>>> Testing
                   <Row>
                     <Col>
                       <Form>
                         <Row form>
-
-                          
                           {/* First Name */}
-                          
+                          {data.hits.map((hit) =>
                           <Col md="6" className="form-group">
                             
                             <label htmlFor="feFirstName">First Name</label> 
                             <FormInput disabled
                               id="feFirstName"
                               placeholder="First Name"
-                              value={this.state.user.firstname}
+                              value={hit.firstname}
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                           
                           
                           {/* Last Name */}
+                          {data.hits.map((hit) =>
                           <Col md="6" className="form-group">
                             <label htmlFor="feLastName">Last Name</label>
                             <FormInput disabled
                               id="feLastName"
                               placeholder="Last Name"
-                              value={this.state.user.lastname}
+                              value={hit.lastname}
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                         </Row>
                         <Row form>
                           {/* Email */}
-                          
+                          {data.hits.map((hit) =>
                           <Col md="6" className="form-group">
                             <label htmlFor="feEmail">Email</label>
                             <FormInput disabled
                               type="email"
                               id="feEmail"
                               placeholder="Email Address"
-                              value={this.state.user.email_id}
+                              value={hit.email_id}
                               onChange={() => {}}
                               autoComplete="email"
                             />
                           </Col>
+                          )}
                         </Row>
                         {/*Address*/}
                         <Row form>
-                          
+                          {data.hits.map((hit) =>
                         <FormGroup>
                           <label htmlFor="feAddress">Address</label>
                           <FormInput disabled
                             id="feAddress"
                             placeholder="Address"
-                            value={this.state.user.address}
+                            value={hit.address}
                             onChange={() => {}}
                           />
                           
                         </FormGroup>
- 
+                        )}
                         </Row>
                         <Row form>
                           {/* City */}
+                          {data.hits.map((hit) => 
                           <Col md="6" className="form-group">
                             <label htmlFor="feCity">City</label>
                             <FormInput disabled
                               id="feCity"
                               placeholder="City"
-                              value = {this.state.user.city}
+                              value = {hit.city}
                               onChange={() => {}}
                             />
                           </Col>
-                          {/* State */} 
+                          )}
+                          {/* State */}
+                          {data.hits.map((hit) => 
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputState">State</label>
                             <FormInput disabled
                               id="feState"
                               placeholder="State"
-                              value = {this.state.user.state}
+                              value = {hit.state}
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                           {/*country*/}
-                           
+                          {data.hits.map((hit) => 
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputCountry">State</label>
                             <FormInput disabled
                               id="feCountry"
                               placeholder="Country"
-                              value = {this.state.user.country}
+                              value = {hit.country}
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                           {/* Zip Code */}
-                           
+                          {data.hits.map((hit) => 
                           <Col md="2" className="form-group">
                             <label htmlFor="feZipCode">Zip</label>
                             <FormInput disabled
                               id="feZipCode"
                               placeholder="Zip"
-                              value={this.state.user.pincode}
+                              value={hit.pincode}
                               onChange={() => {}}
                             />
                           </Col>
-                          
+                          )}
                         </Row>
                         <Row form>
                           
                           {/* Description */}
+                          {data.hits.map((hit) => 
                           <Col md="12" className="form-group">
                             <label htmlFor="feDescription">Description</label>
-                            <FormTextarea disabled id="feDescription" value= {this.state.user.description} rows="5" />
+                            <FormTextarea disabled id="feDescription" value= {hit.description} rows="5" />
                           </Col>
-                          
+                          )}
                         </Row>
                       </Form>
                     </Col>
                   </Row>
+<<<<<<< HEAD
                  
+=======
+>>>>>>> Testing
                 </ListGroupItem>
+                )}
               </ListGroup>
-              
             </Card>
-       
           );
   }
 }
