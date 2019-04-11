@@ -75,6 +75,7 @@ class UserAccountDetails extends Component{
         isLoading: false
       });
     }
+    
     // onTextBoxChangeSignUpEmail = (event) => {
     //   this.setState({
     //     signUpEmail: event.target.value
@@ -160,7 +161,6 @@ class UserAccountDetails extends Component{
       return(<div><p>Loading...</p></div>);
     }
     if (isLoggedIn) {
-      // console.log(isLoggedIn)
       return <Redirect to='/blog-overview' />
     }
     // const {redirectToDashboard} = this.state
