@@ -3,8 +3,7 @@ import { Container, Row, Col } from "shards-react";
 import PropTypes from "prop-types";
 
 import PageTitle from "../components/common/PageTitle";
-import UserDetails from "../components/user-profile-lite/UserDetails";
-import UserAccountDetails from "../components/user-profile-lite/UserAccountDetails";
+import ParentUserProfile from "../components/user-profile-lite/ParentUserProfile";
 
 class UserProfileLite extends React.Component{
   constructor(props) {
@@ -15,17 +14,10 @@ class UserProfileLite extends React.Component{
     let props = this.props
     return (  
     <Container fluid className="main-content-container px-4">
-    <Row noGutters className="page-header py-4">
-      <PageTitle title="User Profile" subtitle="Overview" md="12" className="ml-sm-auto mr-sm-auto" />
-    </Row>
-    <Row>
-      <Col lg="4">
-        <UserDetails />
-      </Col>
-      <Col lg="8">
-        <UserAccountDetails {...props}/>
-      </Col>
-    </Row>
+      <Row noGutters className="page-header py-4">
+        <PageTitle title="User Profile" subtitle="Overview" md="12" className="ml-sm-auto mr-sm-auto" />
+      </Row>
+      <ParentUserProfile {...props}/>
   </Container>)
   }
 }
