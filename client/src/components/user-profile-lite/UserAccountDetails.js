@@ -30,26 +30,26 @@ class UserAccountDetails extends Component{
       token: '',
       user_id: this.props.store.getUserId(),
       user : ''
-    };
-  }
+};
+}
   
   componentWillMount(){
     this.setState({isLoading: false})
     console.log("user_id is " + this.state.user_id)
       
       fetch('http://localhost:5000/api/user/' + this.state.user_id, {
-        method: 'GET', 
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
-        },
-      })
-      // .then(res => res.json()
-      .then(res => {
-        this.setState({user : res.json()})
+},
+})
+      .then(res => res.json())
+.then(res => {
+        this.setState({user : res})
         // console.log("user is" + this.state.user);
         return this.state.user;
-      })
-  }
+})
+}
   
   render(){
     // (jsons.length > 0) ? jsons.map( (json) => {
@@ -58,16 +58,16 @@ class UserAccountDetails extends Component{
 
         // console.log(user);
         
-          return(   
+          return(
             <Card small className="mb-4"> 
               <CardHeader className="border-bottom">
-                {/*<h6 className="m-0">{this.props.title}</h6>*/}
+{/*<h6 className="m-0">{this.props.title}</h6>*/}
               </CardHeader>
               <ListGroup>
                 
                 <ListGroupItem className="p-3">
-                  {/*{console.log(this.state.user)}*/}
-                {users = Object.keys(this.state.user).forEach(function(element) {
+{/*{console.log(this.state.user)}*/}
+
            
                   <Row>
                     <Col>
@@ -75,7 +75,7 @@ class UserAccountDetails extends Component{
                         <Row form>
 
                           
-                          {/* First Name */}
+{/* First Name */}
                           
                           <Col md="6" className="form-group">
                             
@@ -89,7 +89,7 @@ class UserAccountDetails extends Component{
                           </Col>
                           
                           
-                          {/* Last Name */}
+{/* Last Name */}
                           <Col md="6" className="form-group">
                             <label htmlFor="feLastName">Last Name</label>
                             <FormInput disabled
@@ -101,7 +101,7 @@ class UserAccountDetails extends Component{
                           </Col>
                         </Row>
                         <Row form>
-                          {/* Email */}
+{/* Email */}
                           
                           <Col md="6" className="form-group">
                             <label htmlFor="feEmail">Email</label>
@@ -115,7 +115,7 @@ class UserAccountDetails extends Component{
                             />
                           </Col>
                         </Row>
-                        {/*Address*/}
+{/*Address*/}
                         <Row form>
                           
                         <FormGroup>
@@ -131,7 +131,7 @@ class UserAccountDetails extends Component{
  
                         </Row>
                         <Row form>
-                          {/* City */}
+{/* City */}
                           <Col md="6" className="form-group">
                             <label htmlFor="feCity">City</label>
                             <FormInput disabled
@@ -141,7 +141,7 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
-                          {/* State */} 
+{/* State */}
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputState">State</label>
                             <FormInput disabled
@@ -151,7 +151,7 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
-                          {/*country*/}
+{/*country*/}
                            
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputCountry">State</label>
@@ -162,7 +162,7 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
-                          {/* Zip Code */}
+{/* Zip Code */}
                            
                           <Col md="2" className="form-group">
                             <label htmlFor="feZipCode">Zip</label>
@@ -177,7 +177,7 @@ class UserAccountDetails extends Component{
                         </Row>
                         <Row form>
                           
-                          {/* Description */}
+{/* Description */}
                           <Col md="12" className="form-group">
                             <label htmlFor="feDescription">Description</label>
                             <FormTextarea disabled id="feDescription" value= {this.state.user.description} rows="5" />
@@ -187,19 +187,19 @@ class UserAccountDetails extends Component{
                       </Form>
                     </Col>
                   </Row>
-                  }, this)}
+
                 </ListGroupItem>
               </ListGroup>
               
             </Card>
        
-          );
-  }
+);
+}
 }
 UserAccountDetails.propTypes = {
   /**
-   * The component's title.
-   */
+ * The component's title.
+ */
   title: PropTypes.string
 };
 
