@@ -43,7 +43,7 @@ class Editor extends Component{
       amount
     } = this.state;
 
-    fetch('http:://localhost:5000/api/fundraiser/addFundraiser', {
+    fetch('http://localhost:5000/api/fundraiser/addFundraiser', {
       method: 'POST',
       headers:{
         'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ class Editor extends Component{
             <button
               className="bg-primary text-white text-center rounded p-3 "
               style={{ boxShadow: "inset 0 0 5px rgba(0,0,0,.2)" }}
-              onClick={this.onSubmit()}>
+              onClick={this.onSubmit.bind(this)}>
               Start your Fundraising Journey!
             </button>
           </Form>
