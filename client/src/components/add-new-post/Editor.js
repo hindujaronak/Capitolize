@@ -71,7 +71,8 @@ class Editor extends Component{
     }
   }
 
-  onSubmit(){
+  onSubmit(event){
+    event.preventDefault();
     const {
       title,
       description,
@@ -122,6 +123,13 @@ class Editor extends Component{
     this.setState({[name]: event.target.value})
   }
 
+  handleChangeQuill(value){
+    // value = value.replace("<p>", "")
+    // value = value.replace("</p>", "")
+    console.log(value)
+    this.setState({description: value})
+  }
+
   render(){
     // if (this.state.saveData === true) {
     //   return <Redirect to='/blog-overview' />
@@ -147,7 +155,8 @@ class Editor extends Component{
               <ReactQuill 
                 placeholder="Describe your idea here. The funding recieved will depend heavily on how well the idea is described here." 
                 className="add-new-post__editor mb-1" 
-                name="description" defaultValue={this.state.description} />
+                name="description" value={this.state.description}
+                onChange={this.handleChangeQuill.bind(this)} />
               <br></br>
               <br></br>
               <p>Select sector</p>
@@ -180,7 +189,7 @@ class Editor extends Component{
               <button
                 className="bg-primary text-white text-center rounded p-3 "
                 style={{ boxShadow: "inset 0 0 5px rgba(0,0,0,.2)" }}
-                onClick={this.onSubmit}>
+                onClick={this.onSubmit.bind(this)}>
                 Start your Fundraising Journey!
               </button>
             </Form>
