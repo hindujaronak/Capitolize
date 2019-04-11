@@ -61,14 +61,14 @@ function addFundraiser (req,res, next) {
                     message: 'Added Data.'
                 });
             }
-    });
+        })
     // .then(fundraiser => console.log(res.json(fundraiser)));
 };
 router.get('/allFundraisers', getAllFundraisers);
 
 function getAllFundraisers(req, res, next){
     Fundraiser.find({}, 
-        err => {
+        (err, docs) => {
             if(err) {
                 return res.send(
                     {
@@ -77,12 +77,15 @@ function getAllFundraisers(req, res, next){
                     }
                 )
             }
+            return res.send(
+            {
+                success: true,
+                message:'Finally working',
+                docs
+            }
+            );
         });
 
-        return res.send({
-            success: true,
-            message:'Finally working'
-        });
 }
  
 module.exports = router;
