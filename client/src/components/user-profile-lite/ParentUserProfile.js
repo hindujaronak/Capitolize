@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import { Container, Row, Col } from "shards-react";
 import PropTypes from "prop-types";
 
-import PageTitle from "../components/common/PageTitle";
-import UserDetails from "../components/user-profile-lite/UserDetails";
-import UserAccountDetails from "../components/user-profile-lite/UserAccountDetails";
+import PageTitle from "../common/PageTitle";
+import UserDetails from "./UserDetails";
+import UserAccountDetails from "./UserAccountDetails";
 
 class ParentUserProfile extends Component{
     constructor(props) {
