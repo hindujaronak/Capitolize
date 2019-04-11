@@ -313,11 +313,8 @@ function user (req, res, next){
             });
         }
         else{
+            // return res.json(user);
             return res.json(user);
-            // return res.send({
-            //     success: true,
-            //     message: "good"
-            // }).json(user);
         }
     });
 }
