@@ -43,13 +43,14 @@ class UserAccountDetails extends Component{
           'Content-Type': 'application/json'
         },
       })
-      // .then(res => res.json()
+      .then(res => res.json())
       .then(res => {
-        this.setState({user : res.json()})
+        this.setState({user : res})
         // console.log("user is" + this.state.user);
         return this.state.user;
       })
   }
+  
   
   render(){
     // (jsons.length > 0) ? jsons.map( (json) => {
@@ -67,7 +68,6 @@ class UserAccountDetails extends Component{
                 
                 <ListGroupItem className="p-3">
                   {/*{console.log(this.state.user)}*/}
-                {users = Object.keys(this.state.user).forEach(function(element) {
            
                   <Row>
                     <Col>
@@ -187,7 +187,6 @@ class UserAccountDetails extends Component{
                       </Form>
                     </Col>
                   </Row>
-                  }, this)}
                 </ListGroupItem>
               </ListGroup>
               
