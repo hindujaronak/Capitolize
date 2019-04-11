@@ -29,194 +29,177 @@ class UserAccountDetails extends Component{
       isLoading: true,
       token: '',
       user_id: this.props.store.getUserId(),
-      hits:[],
-      data: ''
-    };
-  }
+      user : ''
+};
+}
   
   componentWillMount(){
     this.setState({isLoading: false})
     console.log("user_id is " + this.state.user_id)
       
       fetch('http://localhost:5000/api/user/' + this.state.user_id, {
-        method: 'GET', 
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
-        },
-      })
-<<<<<<< HEAD
+},
+})
       .then(res => res.json())
-      .then(res => {
+.then(res => {
         this.setState({user : res})
         // console.log("user is" + this.state.user);
         return this.state.user;
-      })
-=======
-      // .then(res => res.json())
-      .then(data => this.setState({ hits: data.hits }));
-      console.log("hits" + this.state.hits)
-      console.log("data" + this.state.data)
->>>>>>> Testing
-  }
+})
+}
   
   render(){
     // (jsons.length > 0) ? jsons.map( (json) => {
-      const {data, hits} = this.state;
+        const user = this.state.user;
+        var users;
+
+        // console.log(user);
+        
           return(
             <Card small className="mb-4"> 
               <CardHeader className="border-bottom">
-                {/*<h6 className="m-0">{this.props.title}</h6>*/}
+{/*<h6 className="m-0">{this.props.title}</h6>*/}
               </CardHeader>
               <ListGroup>
                 
                 <ListGroupItem className="p-3">
-<<<<<<< HEAD
-                  {/*{console.log(this.state.user)}*/}
-                
+{/*{console.log(this.state.user)}*/}
+
            
-=======
->>>>>>> Testing
                   <Row>
                     <Col>
                       <Form>
                         <Row form>
-                          {/* First Name */}
-                          {data.hits.map((hit) =>
+
+                          
+{/* First Name */}
+                          
                           <Col md="6" className="form-group">
                             
                             <label htmlFor="feFirstName">First Name</label> 
                             <FormInput disabled
                               id="feFirstName"
                               placeholder="First Name"
-                              value={hit.firstname}
+                              value={this.state.user.firstname}
                               onChange={() => {}}
                             />
                           </Col>
-                          )}
                           
                           
-                          {/* Last Name */}
-                          {data.hits.map((hit) =>
+{/* Last Name */}
                           <Col md="6" className="form-group">
                             <label htmlFor="feLastName">Last Name</label>
                             <FormInput disabled
                               id="feLastName"
                               placeholder="Last Name"
-                              value={hit.lastname}
+                              value={this.state.user.lastname}
                               onChange={() => {}}
                             />
                           </Col>
-                          )}
                         </Row>
                         <Row form>
-                          {/* Email */}
-                          {data.hits.map((hit) =>
+{/* Email */}
+                          
                           <Col md="6" className="form-group">
                             <label htmlFor="feEmail">Email</label>
                             <FormInput disabled
                               type="email"
                               id="feEmail"
                               placeholder="Email Address"
-                              value={hit.email_id}
+                              value={this.state.user.email_id}
                               onChange={() => {}}
                               autoComplete="email"
                             />
                           </Col>
-                          )}
                         </Row>
-                        {/*Address*/}
+{/*Address*/}
                         <Row form>
-                          {data.hits.map((hit) =>
+                          
                         <FormGroup>
                           <label htmlFor="feAddress">Address</label>
                           <FormInput disabled
                             id="feAddress"
                             placeholder="Address"
-                            value={hit.address}
+                            value={this.state.user.address}
                             onChange={() => {}}
                           />
                           
                         </FormGroup>
-                        )}
+ 
                         </Row>
                         <Row form>
-                          {/* City */}
-                          {data.hits.map((hit) => 
+{/* City */}
                           <Col md="6" className="form-group">
                             <label htmlFor="feCity">City</label>
                             <FormInput disabled
                               id="feCity"
                               placeholder="City"
-                              value = {hit.city}
+                              value = {this.state.user.city}
                               onChange={() => {}}
                             />
                           </Col>
-                          )}
-                          {/* State */}
-                          {data.hits.map((hit) => 
+{/* State */}
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputState">State</label>
                             <FormInput disabled
                               id="feState"
                               placeholder="State"
-                              value = {hit.state}
+                              value = {this.state.user.state}
                               onChange={() => {}}
                             />
                           </Col>
-                          )}
-                          {/*country*/}
-                          {data.hits.map((hit) => 
+{/*country*/}
+                           
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputCountry">State</label>
                             <FormInput disabled
                               id="feCountry"
                               placeholder="Country"
-                              value = {hit.country}
+                              value = {this.state.user.country}
                               onChange={() => {}}
                             />
                           </Col>
-                          )}
-                          {/* Zip Code */}
-                          {data.hits.map((hit) => 
+{/* Zip Code */}
+                           
                           <Col md="2" className="form-group">
                             <label htmlFor="feZipCode">Zip</label>
                             <FormInput disabled
                               id="feZipCode"
                               placeholder="Zip"
-                              value={hit.pincode}
+                              value={this.state.user.pincode}
                               onChange={() => {}}
                             />
                           </Col>
-                          )}
+                          
                         </Row>
                         <Row form>
                           
-                          {/* Description */}
-                          {data.hits.map((hit) => 
+{/* Description */}
                           <Col md="12" className="form-group">
                             <label htmlFor="feDescription">Description</label>
-                            <FormTextarea disabled id="feDescription" value= {hit.description} rows="5" />
+                            <FormTextarea disabled id="feDescription" value= {this.state.user.description} rows="5" />
                           </Col>
-                          )}
+                          
                         </Row>
                       </Form>
                     </Col>
                   </Row>
-<<<<<<< HEAD
-                 
-=======
->>>>>>> Testing
+
                 </ListGroupItem>
-                )}
               </ListGroup>
+              
             </Card>
-          );
-  }
+       
+);
+}
 }
 UserAccountDetails.propTypes = {
   /**
-   * The component's title.
-   */
+ * The component's title.
+ */
   title: PropTypes.string
 };
 

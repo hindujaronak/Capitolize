@@ -61,15 +61,9 @@ function addFundraiser (req,res, next) {
                     message: 'Added Data.'
                 });
             }
-<<<<<<< HEAD
+
         })
-=======
-<<<<<<< HEAD
-    })
-=======
-    });
->>>>>>> Testing
->>>>>>> Testing
+
     // .then(fundraiser => console.log(res.json(fundraiser)));
 };
 router.get('/allFundraisers', getAllFundraisers);
