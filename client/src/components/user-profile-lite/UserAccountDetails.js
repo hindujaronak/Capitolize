@@ -1,5 +1,7 @@
 import React , {Component} from "react";
 import PropTypes from "prop-types";
+import routes from "../../routes";
+
 import {Redirect} from 'react-router-dom';
 import {
   Card,
@@ -27,11 +29,12 @@ class UserAccountDetails extends Component{
       isLoading: true,
       token: '',
       user_id: this.props.store.getUserId(),
-      hits:[]
+      hits:[],
+      data: ''
     };
   }
   
-  componentDidMount(){
+  componentWillMount(){
     this.setState({isLoading: false})
     console.log("user_id is " + this.state.user_id)
       
@@ -43,25 +46,29 @@ class UserAccountDetails extends Component{
       })
       // .then(res => res.json())
       .then(data => this.setState({ hits: data.hits }));
+      console.log("hits" + this.state.hits)
+      console.log("data" + this.state.data)
   }
   
   render(){
     // (jsons.length > 0) ? jsons.map( (json) => {
-      const {hits} = this.state;
+      const {data, hits} = this.state;
           return(
             <Card small className="mb-4"> 
               <CardHeader className="border-bottom">
                 {/*<h6 className="m-0">{this.props.title}</h6>*/}
               </CardHeader>
               <ListGroup>
-                {hits.map((hit) =>
+                
                 <ListGroupItem className="p-3">
                   <Row>
                     <Col>
                       <Form>
                         <Row form>
                           {/* First Name */}
+                          {data.hits.map((hit) =>
                           <Col md="6" className="form-group">
+                            
                             <label htmlFor="feFirstName">First Name</label> 
                             <FormInput disabled
                               id="feFirstName"
@@ -70,7 +77,11 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
+                          
+                          
                           {/* Last Name */}
+                          {data.hits.map((hit) =>
                           <Col md="6" className="form-group">
                             <label htmlFor="feLastName">Last Name</label>
                             <FormInput disabled
@@ -80,9 +91,11 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                         </Row>
                         <Row form>
                           {/* Email */}
+                          {data.hits.map((hit) =>
                           <Col md="6" className="form-group">
                             <label htmlFor="feEmail">Email</label>
                             <FormInput disabled
@@ -94,8 +107,11 @@ class UserAccountDetails extends Component{
                               autoComplete="email"
                             />
                           </Col>
-                          
+                          )}
                         </Row>
+                        {/*Address*/}
+                        <Row form>
+                          {data.hits.map((hit) =>
                         <FormGroup>
                           <label htmlFor="feAddress">Address</label>
                           <FormInput disabled
@@ -104,9 +120,13 @@ class UserAccountDetails extends Component{
                             value={hit.address}
                             onChange={() => {}}
                           />
+                          
                         </FormGroup>
+                        )}
+                        </Row>
                         <Row form>
                           {/* City */}
+                          {data.hits.map((hit) => 
                           <Col md="6" className="form-group">
                             <label htmlFor="feCity">City</label>
                             <FormInput disabled
@@ -116,7 +136,9 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                           {/* State */}
+                          {data.hits.map((hit) => 
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputState">State</label>
                             <FormInput disabled
@@ -126,7 +148,9 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                           {/*country*/}
+                          {data.hits.map((hit) => 
                           <Col md="4" className="form-group">
                             <label htmlFor="feInputCountry">State</label>
                             <FormInput disabled
@@ -136,7 +160,9 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                           {/* Zip Code */}
+                          {data.hits.map((hit) => 
                           <Col md="2" className="form-group">
                             <label htmlFor="feZipCode">Zip</label>
                             <FormInput disabled
@@ -146,13 +172,17 @@ class UserAccountDetails extends Component{
                               onChange={() => {}}
                             />
                           </Col>
+                          )}
                         </Row>
                         <Row form>
+                          
                           {/* Description */}
+                          {data.hits.map((hit) => 
                           <Col md="12" className="form-group">
                             <label htmlFor="feDescription">Description</label>
                             <FormTextarea disabled id="feDescription" value= {hit.description} rows="5" />
                           </Col>
+                          )}
                         </Row>
                       </Form>
                     </Col>
