@@ -69,7 +69,7 @@ export default [
     component: Register
   },
   {
-    path: "/fundraiser",
+    path: "/fundraiser/:id",
     layout: NewLayout,
     component: Fundraiser
   }
