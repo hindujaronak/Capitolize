@@ -20,11 +20,6 @@ export default function() {
       title: "Blog Posts",
       htmlBefore: '<i class="material-icons">vertical_split</i>',
       to: "/blog-posts",
-    },
-    {
-      title: "Register",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/register",
     }
   ];
 }
