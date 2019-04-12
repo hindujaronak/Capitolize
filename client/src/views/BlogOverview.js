@@ -130,7 +130,7 @@ class BlogOverview extends React.Component {
           author: "Abdul Rashid ",
           authorAvatar: require("../images/avatars/1.jpg"),
           title: "Conduct at an replied removal an amongst",
-          body:
+          description:
             "However venture pursuit he am mr cordial. Forming musical am hearing studied be luckily. But in for determine what would see...",
           date: "28 February 2019"
         },
@@ -141,7 +141,7 @@ class BlogOverview extends React.Component {
           author: "Hassan Izz-Al-Din",
           authorAvatar: require("../images/avatars/2.jpg"),
           title: "Off tears are day blind smile alone had ready",
-          body:
+          description:
             "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
           date: "29 February 2019"
         },
@@ -152,7 +152,7 @@ class BlogOverview extends React.Component {
           author: "Osama bin Laden",
           authorAvatar: require("../images/avatars/2.jpg"),
           title: "Difficult in delivered extensive at direction",
-          body:
+          description:
             "Is at purse tried jokes china ready decay an. Small its shy way had woody downs power. To denoting admitted speaking learning my...",
           date: "29 February 2019"
         },
@@ -163,7 +163,7 @@ class BlogOverview extends React.Component {
           author: "Khalid Sheikh Mohammed",
           authorAvatar: require("../images/avatars/3.jpg"),
           title: "It so numerous if he may outlived disposal",
-          body:
+          description:
             "How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved ready road market resolution...",
           date: "29 February 2019"
         }
@@ -211,19 +211,19 @@ class BlogOverview extends React.Component {
               <Card small className="card-post card-post--1">
                 <div
                   className="card-post__image"
-                  style={{ backgroundImage: `url(${post.backgroundImage})` }}
+                  style={{ backgroundImage: `url(./../images/Logo5.png)` }}
                 >
                   <Badge
                     pill
                     className={`card-post__category bg-${post.categoryTheme}`}
                   >
-                    {post.category}
+                    {post.sector}
                   </Badge>
                   <div className="card-post__author d-flex">
                     <a
                       href="/"
                       className="card-post__author-avatar card-post__author-avatar--small"
-                      style={{ backgroundImage: `url('${post.authorAvatar}')` }}
+                      style={{ backgroundImage: `url('../images/avatars/2.jpg')` }}
                     >
                       Written by {post.author}
                     </a>
@@ -232,11 +232,13 @@ class BlogOverview extends React.Component {
                 <CardBody>
                   <h5 className="card-title">
                     <a href="/" className="text-fiord-blue">
-                      {post.title}
+                      {post.title.substring(0, 40)}
                     </a>
                   </h5>
-                  <p className="card-text d-inline-block mb-3">{post.body}</p>
-                  <span className="text-muted">{post.date}</span>
+                  {/* <p className="card-text d-inline-block mb-3"> */}
+                    {post.description.substring(0, 100).concat("....")}
+                  <br></br>
+                  <span className="text-muted">{"Rs. "+post.amount}</span>
                 </CardBody>
               </Card>
             </Col>
