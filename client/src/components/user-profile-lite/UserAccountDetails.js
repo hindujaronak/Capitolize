@@ -28,6 +28,7 @@ class UserAccountDetails extends Component{
     this.state = {
       isLoading: true,
       token: '',
+      // user_id : this.props.user_idFromParent,
       user_id: this.props.store.getUserId(),
       user : ''
 };
@@ -35,26 +36,27 @@ class UserAccountDetails extends Component{
   
   componentWillMount(){
     this.setState({isLoading: false})
+    // console.log(this.state.user_id)
+    // console.log(this.props.userDataFromParent)
     console.log("user_id is " + this.state.user_id)
       
       fetch('http://localhost:5000/api/user/' + this.state.user_id, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
-},
-})
+        },
+      })
       .then(res => res.json())
-.then(res => {
+      .then(res => {
         this.setState({user : res})
         // console.log("user is" + this.state.user);
         return this.state.user;
-})
-}
+      })
+    }
   
   render(){
-    // (jsons.length > 0) ? jsons.map( (json) => {
         const user = this.state.user;
-        var users;
+        // var users;
 
         // console.log(user);
         
