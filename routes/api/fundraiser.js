@@ -38,6 +38,10 @@ const Fundraiser = require('../../models/FundraiserSchema');
 
 router.post('/addFundraiser', addFundraiser);
 
+router.get('/allFundraisers', getAllFundraisers);
+
+router.get('/:fundraiser_id', oneFundraiser);
+
 function addFundraiser (req,res, next) {
     const newFundraiser = new Fundraiser({
         title: req.body.title,
@@ -66,7 +70,7 @@ function addFundraiser (req,res, next) {
 
     // .then(fundraiser => console.log(res.json(fundraiser)));
 };
-router.get('/allFundraisers', getAllFundraisers);
+
 
 function getAllFundraisers(req, res, next){
     Fundraiser.find({}, 
@@ -89,5 +93,25 @@ function getAllFundraisers(req, res, next){
         });
 
 }
- 
+
+//get fundraiser by id
+function oneFundraiser (req, res, next){
+    // console.log(req)
+    const { fundraiser_id } = req.params;
+    // const { user_id } = query;
+
+    // console.log(user_id)
+    Fundraiser.findById(fundraiser_id, (err , fundraiser) => {
+        if(err){
+            return res.send({
+                success: false,
+                message: "Error: server error"
+            });
+        }
+        else{
+            // return res.json(user);
+            return res.json(fundraiser);
+        }
+    });
+}
 module.exports = router;
