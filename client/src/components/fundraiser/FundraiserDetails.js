@@ -24,16 +24,16 @@ class UserAccountDetails extends Component{
   constructor(props){
     super(props)
     this.state = {
-      title : this.props,
+      title : this.props.title,
       isLoading: true,
-      fundraiser_id: '',
-      fundraiser : ''
+      fundraiser_id: '5cb00ab08c079657cc58691c',
+      fundraiser : {}
     }
     
   }
   componentWillMount(){
     this.setState({isLoading: false})
-      
+      console.log(this.state.fundraiser_id)
       fetch('http://localhost:5000/api/fundraiser/' + this.state.fundraiser_id, {
         method: 'GET',
         headers: {
@@ -42,18 +42,21 @@ class UserAccountDetails extends Component{
       })
       .then(res => res.text())
       .then(res => {
-        this.setState({fundraiser : res})
+
+        this.setState({fundraiser : JSON.parse(res)})
         console.log("fundraiser is" + this.state.fundraiser);
         return this.state.fundraiser;
       })
     }
   render(){
     const fundraiser = this.state.fundraiser
+    console.log(fundraiser)
+    console.log(fundraiser._id)
     const title = this.state.title
 
     return(
       <Row>
-        <Col md="4">
+        <Col md="12">
           <Card small className="mb-4 pt-3">
             <CardHeader className="border-bottom text-center">
               <div className="mb-3 mx-auto">
@@ -86,10 +89,10 @@ class UserAccountDetails extends Component{
                     </span>
                   </Progress>
                   <strong className="text-muted d-block mb-2">
-                        Amount Needed : {fundraiser.Amount}
+                        Amount Needed : {fundraiser.amount}
                   </strong>
                   <Button pill outline size="sm" className="mb-2">
-                    <i className="material-icons mr-1">Donate Now</i> Donate Now
+                    <i className="material-icons mr-1"></i> Donate Now
                   </Button>
                 </div>
               </ListGroupItem> 
@@ -102,12 +105,12 @@ class UserAccountDetails extends Component{
 }
 
 
-UserAccountDetails.propTypes = {
-  /**
-   * The component's title.
-   */
-  title: PropTypes.string
-};
+// UserAccountDetails.propTypes = {
+//   /**
+//    * The component's title.
+//    */
+//   title: PropTypes.string
+// };
 
 UserAccountDetails.defaultProps = {
   title: {
