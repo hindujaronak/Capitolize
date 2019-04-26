@@ -17,7 +17,9 @@ class UserProfileLite extends Component{
           <PageTitle title="Fundraiser Details" subtitle="" md="12" className="ml-sm-auto mr-sm-auto" />
         </Row>
         <Row>
-          <FundraiserDetails {...props}/>
+          <Col md="4"></Col>
+          <Col md="4"><FundraiserDetails {...props}/></Col>
+          
         </Row>
       </Container>
     )
