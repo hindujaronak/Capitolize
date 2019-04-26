@@ -22,6 +22,8 @@ import{
   setInStorage
 } from "./../utils/storage";
 
+import backgroundImage from "./../images/Logo3.png";
+
 class BlogOverview extends React.Component {
   constructor(props){
     super(props)
@@ -202,16 +204,21 @@ class BlogOverview extends React.Component {
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle title="Dashboard" subtitle="Profile Overview" className="text-sm-left mb-3" />
+          <PageTitle title="Dashboard" subtitle="Top fundraisers and activities on the platform" className="text-sm-left mb-3" />
         </Row>
 
         <Row>
-          {this.state.PostsListOne.map((post, idx) => (
+          {this.state.PostsListOne.map((post, idx) => {
+            if (idx >= 4) {
+              return 
+            }
+            console.log(post._id)
+            return (
             <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
               <Card small className="card-post card-post--1">
                 <div
                   className="card-post__image"
-                  style={{ backgroundImage: `url(./../images/Logo5.png)` }}
+                  style={{ backgroundImage: `url('${backgroundImage}')` }}
                 >
                   <Badge
                     pill
@@ -231,7 +238,7 @@ class BlogOverview extends React.Component {
                 </div>
                 <CardBody>
                   <h5 className="card-title">
-                    <a href="/" className="text-fiord-blue">
+                    <a href="/fundraiser/{post_id}" className="text-fiord-blue">
                       {post.title.substring(0, 40)}
                     </a>
                   </h5>
@@ -242,7 +249,9 @@ class BlogOverview extends React.Component {
                 </CardBody>
               </Card>
             </Col>
-          ))}
+            )
+          })
+        }
         </Row>
 
         <Row>

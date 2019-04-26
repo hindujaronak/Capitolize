@@ -91,9 +91,21 @@ class UserAccountDetails extends Component{
                   <strong className="text-muted d-block mb-2">
                         Amount Needed : {fundraiser.amount}
                   </strong>
-                  <Button pill outline size="sm" className="mb-2">
-                    <i className="material-icons mr-1"></i> Donate Now
-                  </Button>
+                  <Row>
+                    <Col md="6">
+                      <FormInput 
+                      size="lg" 
+                      placeholder="Enter the amount" 
+                      name="amount" 
+                      defaultValue={this.state.amount} />
+                    </Col>
+                    <Col md="6">
+                      <Button pill outline size="sm" className="mb-2">
+                        <i className="material-icons mr-1" size="lg"></i> Donate Now
+                      </Button>
+                    </Col>
+                  </Row>
+                  
                 </div>
               </ListGroupItem> 
             </ListGroup>
