@@ -25,15 +25,15 @@ class UserAccountDetails extends Component{
     super(props)
     this.state = {
       title : this.props.title,
-
+      
       // user_id: this.props.store.getUserId(),
-      user_id:this.props.user_id,
+      user_id:'5ca2fb9ea5649e4670277662',
       isLoading: true,
       fundraiser_id: '5cb00ab08c079657cc58691c',
       fundraiser : {},
       donate : false,
       donateError:'',
-
+      updatefund:0
     }
     
   }
@@ -80,10 +80,16 @@ class UserAccountDetails extends Component{
         }
       }); //add a closing bracket
       if(this.state.donate == true){
-        
+        const fundraiser = this.state.fundraiser
+        this.state.updatefund = fundraiser.amount + this.state.amount
       }
-  }
-  componentWillMount(){
+      else{
+
+        const fundraiser = this.state.fundraiser
+        this.state.updatefund = fundraiser.amount
+      }
+    }
+  componentDidMount(){
     this.setState({isLoading: false})
       console.log(this.state.fundraiser_id)
       fetch('http://localhost:5000/api/fundraiser/' + this.state.fundraiser_id, {
@@ -106,12 +112,17 @@ class UserAccountDetails extends Component{
     const fundraiser = this.state.fundraiser
     console.log(fundraiser)
     console.log(fundraiser._id)
-
+    if(this.state.donate == true){
+      this.state.updatefund = fundraiser.amount + this.state.amount
+    }
+    else{
+      this.state.updatefund = fundraiser.amount
+    }
     // console.log(this.state.user_id)
     // console.log("fund"+ this.state.fund)
     console.log("user"+ this.state.user_id)
     const title = this.state.title
-
+    
     return(
       <Row>
         <Col md="12">
@@ -146,8 +157,9 @@ class UserAccountDetails extends Component{
                       {title.performanceReportValue}%
                     </span>
                   </Progress>
+                  
                   <strong className="text-muted d-block mb-2">
-                        Amount Needed : {fundraiser.amount}
+                        Amount Needed : {this.state.updatefund}
                   </strong>
                   <Row>
                     <Col md="6">
