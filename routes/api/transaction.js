@@ -3,10 +3,8 @@ const router = express.Router(); //sendingAPI
 const multer = require('multer');
 
 const Transaction = require('../../models/TransactionSchema');
-<<<<<<< HEAD
 const Fundraiser = require('../../models/FundraiserSchema');
-=======
->>>>>>> Testing
+
 
 
 router.post('/addTransaction', addTransaction);
@@ -17,16 +15,11 @@ function addTransaction (req,res, next) {
         user_id: req.body.user_id,
         fundraiser_id: req.body.fundraiser_id,
         amount: req.body.amount
-<<<<<<< HEAD
     });
     // const updateFundraiser = new Fundraiser()
     // updateFundraiser.findOneAndUpdate({_id:req.params.id}, req.body.amount, function (err, amount) {
     //     res.send(amount);
     // })
-        
-=======
-    });    
->>>>>>> Testing
     newTransaction.save((err, transaction) => {
         if(err){
             return res.send({

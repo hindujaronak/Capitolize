@@ -25,7 +25,6 @@ class UserAccountDetails extends Component{
     super(props)
     this.state = {
       title : this.props.title,
-      
       // user_id: this.props.store.getUserId(),
       user_id:'5ca2fb9ea5649e4670277662',
       isLoading: true,
