@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 
 const user = require('./routes/api/user');
 const fundraiser = require('./routes/api/fundraiser');
+
+const transaction = require('./routes/api/transaction');
 var cors = require('cors');
 
 const app = express();
@@ -28,6 +30,7 @@ mongoose
 app.use('/api/user', user);
 app.use('/api/fundraiser', fundraiser);
 
+app.use('/api/transaction', transaction);
 
 const port = process.env.PORT || 5000;
 

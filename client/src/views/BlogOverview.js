@@ -29,6 +29,7 @@ class BlogOverview extends React.Component {
     super(props)
     console.log(props)
     this.state={
+      user:this.props.user_id,
       smallStats:  [
         {
           label: "Page Hits",
@@ -200,6 +201,7 @@ class BlogOverview extends React.Component {
   }
 
   render(){
+    console.log(this.state.user)
     return(
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
