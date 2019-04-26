@@ -71,38 +71,38 @@ TopReferrals.propTypes = {
 };
 
 TopReferrals.defaultProps = {
-  title: "Top Referrals",
+  title: "Top Contributors",
   referralData: [
     {
-      title: "GitHub",
+      title: "Murli",
       value: "19,291"
     },
     {
-      title: "Stack Overflow",
+      title: "Jackie",
       value: "11,201"
     },
     {
-      title: "Hacker News",
+      title: "Hacker Arvind",
       value: "9,291"
     },
     {
-      title: "Reddit",
+      title: "Sagarika",
       value: "8,281"
     },
     {
-      title: "The Next Web",
+      title: "The Aanchal Web",
       value: "7,128"
     },
     {
-      title: "Tech Crunch",
+      title: "Tech Jain",
       value: "6,218"
     },
     {
-      title: "YouTube",
+      title: "Goat",
       value: "1,218"
     },
     {
-      title: "Adobe",
+      title: "Jackita",
       value: "1,171"
     }
   ]

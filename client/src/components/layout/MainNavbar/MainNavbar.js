@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
-import { Container, Navbar } from "shards-react";
+import { Container, Navbar, NavbarBrand } from "shards-react";
 
 import NavbarSearch from "./NavbarSearch";
 import NavbarNav from "./NavbarNav/NavbarNav";
@@ -18,8 +18,24 @@ const MainNavbar = ({ layout, stickyTop }) => {
     <div className={classes}>
       <Container className="p-0">
         <Navbar type="light" className="align-items-stretch flex-md-nowrap p-0">
-          <NavbarSearch />
-          <NavbarNav />
+        <NavbarBrand
+            className="w-100 mr-0 left"
+            href="#"
+            style={{ lineHeight: "25px" }}
+          >
+            <div className="d-table m-auto">
+              <img
+                id="main-logo"
+                className="d-inline-block align-top mr-1"
+                style={{ maxWidth: "25px" }}
+                src={require("../../../images/Logo2-small.png")}
+                alt="Capitolize Logo"
+              />
+              <span className="d-none d-md-inline ml-1">
+                Capitolize
+              </span>
+            </div>
+          </NavbarBrand>
           <NavbarToggle />
         </Navbar>
       </Container>

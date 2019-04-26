@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 
 // Layout Types
-import { DefaultLayout } from "./layouts";
+import { DefaultLayout, NewLayout } from "./layouts/";
 
 // Route Views
 import BlogOverview from "./views/BlogOverview";
@@ -14,27 +14,28 @@ import Tables from "./views/Tables";
 import BlogPosts from "./views/BlogPosts";
 import Login from "./views/Login";
 import Register from "./views/Register";
+import Fundraiser from "./views/Fundraiser";
 
 export default [
   {
     path: "/",
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to="/blog-overview" />
+    component: () => <Redirect to="/login" />
   },
   {
     path: "/blog-overview",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: BlogOverview
   },
   {
     path: "/user-profile-lite",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: UserProfileLite
   },
   {
-    path: "/add-new-post",
-    layout: DefaultLayout,
+    path: "/add-new-idea",
+    layout: NewLayout,
     component: AddNewPost
   },
   {
@@ -44,17 +45,17 @@ export default [
   },
   {
     path: "/components-overview",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: ComponentsOverview
   },
   {
     path: "/tables",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: Tables
   },
   {
     path: "/blog-posts",
-    layout: DefaultLayout,
+    layout: NewLayout,
     component: BlogPosts
   },
   {
@@ -66,5 +67,10 @@ export default [
     path: "/register",
     layout: DefaultLayout,
     component: Register
+  },
+  {
+    path: "/fundraiser/:id",
+    layout: NewLayout,
+    component: Fundraiser
   }
 ];

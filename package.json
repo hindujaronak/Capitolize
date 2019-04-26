@@ -1,0 +1,39 @@
+{
+  "name": "capitolize",
+  "version": "1.0.0",
+  "description": "Fundraising application",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hindujaronak/Capitolize.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hindujaronak/Capitolize/issues"
+  },
+  "homepage": "https://github.com/hindujaronak/Capitolize#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt": "^3.0.4",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^3.1.9-1",
+    "encrypt-password": "^1.0.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.11",
+    "mongoose-file": "0.0.2",
+    "multer": "^1.4.1",
+    "npm": "^6.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
