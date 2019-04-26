@@ -212,6 +212,7 @@ class BlogOverview extends React.Component {
             if (idx >= 4) {
               return 
             }
+            console.log(post._id)
             return (
             <Col lg="3" md="6" sm="12" className="mb-4" key={idx}>
               <Card small className="card-post card-post--1">
@@ -237,7 +238,7 @@ class BlogOverview extends React.Component {
                 </div>
                 <CardBody>
                   <h5 className="card-title">
-                    <a href="/" className="text-fiord-blue">
+                    <a href="/fundraiser/{post_id}" className="text-fiord-blue">
                       {post.title.substring(0, 40)}
                     </a>
                   </h5>
