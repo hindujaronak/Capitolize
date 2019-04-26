@@ -17,9 +17,9 @@ export default function() {
       to: "/user-profile-lite",
     },
     {
-      title: "Blog Posts",
+      title: "Fundraisers",
       htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "/blog-posts",
+      to: "/all-fundraisers",
     }
   ];
 }
