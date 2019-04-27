@@ -116,7 +116,7 @@ class BlogPosts extends React.Component {
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle sm="4" title="Recent Fundraisers" subtitle="All ideas registered on the platform" className="text-sm-left" />
+          <PageTitle sm="4" title="Blog Posts" subtitle="Components" className="text-sm-left" />
         </Row>
 
         {/* Second Row of Posts */}
@@ -146,16 +146,49 @@ class BlogPosts extends React.Component {
                 </div>
                 <CardBody>
                   <h5 className="card-title">
-                    <a href="/fundraiser/{post_id}" className="text-fiord-blue">
+                    <a className="text-fiord-blue" href="#">
                       {post.title.substring(0, 40)}
                     </a>
                   </h5>
-                  <p className="card-text d-inline-block mb-3">{post.description.substring(0, 100).concat("....")}
-                    <a href="/fundraiser/{post_id}" className="e">Read more
-                    </a>
-                  </p>
+                  <p className="card-text d-inline-block mb-3">{post.description.substring(0, 100).concat("....")}</p>
                   <span className="text-muted">{post.amount}</span>
                 </CardBody>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+
+        {/* Third Row of Posts */}
+        <Row>
+          {PostsListThree.map((post, idx) => (
+            <Col lg="4" key={idx}>
+              <Card small className="card-post mb-4">
+                <CardBody>
+                  <h5 className="card-title">{post.title.substring(0, 40)}</h5>
+                  <p className="card-text text-muted">{post.description.substring(0, 100).concat("....")}</p>
+                </CardBody>
+                <CardFooter className="border-top d-flex">
+                  <div className="card-post__author d-flex">
+                    <a
+                      href="#"
+                      className="card-post__author-avatar card-post__author-avatar--small"
+                      style={{ backgroundImage: `url('${post.authorAvatar}')` }}
+                    >
+                      Written by James Khan
+                    </a>
+                    <div className="d-flex flex-column justify-content-center ml-3">
+                      <span className="card-post__author-name">
+                        {post.author}
+                      </span>
+                      <small className="text-muted">{post.amount}</small>
+                    </div>
+                  </div>
+                  <div className="my-auto ml-auto">
+                    <Button size="sm" theme="white">
+                      <i className="far fa-bookmark mr-1" /> Bookmark
+                    </Button>
+                  </div>
+                </CardFooter>
               </Card>
             </Col>
           ))}

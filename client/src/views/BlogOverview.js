@@ -29,7 +29,6 @@ class BlogOverview extends React.Component {
     super(props)
     console.log(props)
     this.state={
-      user:this.props.user_id,
       smallStats:  [
         {
           label: "Page Hits",
@@ -201,12 +200,11 @@ class BlogOverview extends React.Component {
   }
 
   render(){
-    console.log(this.state.user)
     return(
       <Container fluid className="main-content-container px-4">
         {/* Page Header */}
         <Row noGutters className="page-header py-4">
-          <PageTitle title="Dashboard" subtitle="Trending fundraisers and activities" className="text-sm-left mb-3" />
+          <PageTitle title="Dashboard" subtitle="Top fundraisers and activities on the platform" className="text-sm-left mb-3" />
         </Row>
 
         <Row>
@@ -230,7 +228,7 @@ class BlogOverview extends React.Component {
                   </Badge>
                   <div className="card-post__author d-flex">
                     <a
-                      href="/fundraiser/{post_id}"
+                      href="/"
                       className="card-post__author-avatar card-post__author-avatar--small"
                       style={{ backgroundImage: `url('../images/avatars/2.jpg')` }}
                     >
@@ -246,8 +244,6 @@ class BlogOverview extends React.Component {
                   </h5>
                   {/* <p className="card-text d-inline-block mb-3"> */}
                     {post.description.substring(0, 100).concat("....")}
-                    <a href="/fundraiser/{post_id}" className="e">Read more
-                    </a>
                   <br></br>
                   <span className="text-muted">{"Rs. "+post.amount}</span>
                 </CardBody>
