@@ -4,9 +4,17 @@ const bodyParser = require('body-parser');
 
 const user = require('./routes/api/user');
 const fundraiser = require('./routes/api/fundraiser');
+const transaction = require('./routes/api/transaction'); 
+
 var cors = require('cors');
 
 const app = express();
+
+app.get('/', (req, res) => { 
+    res.send('Hello World'); 
+}); 
+
+
 
 //BodyParser Middleware
 app.use(bodyParser.json());
@@ -15,6 +23,10 @@ app.use(cors());
  
 // DB config
 const db = require('./config/keys.js').mongoURI;
+const https = require('https') 
+const fs = require('fs') 
+ 
+
 
 mongoose.set('useCreateIndex', true);
 // Connect to mongoDB
@@ -27,9 +39,17 @@ mongoose
 
 app.use('/api/user', user);
 app.use('/api/fundraiser', fundraiser);
+app.use('/api/transaction', transaction); 
+
 
 
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
+// https.createServer({ 
+//   key: fs.readFileSync('OpenSSL-Win64/bin/server.key'), 
+//   cert: fs.readFileSync('OpenSSL-Win64/bin/server.cert') 
+// }, app).listen(5000, () => { 
+//   console.log('Listening...') 
+// }) 
