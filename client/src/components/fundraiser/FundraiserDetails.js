@@ -25,70 +25,13 @@ class UserAccountDetails extends Component{
     super(props)
     this.state = {
       title : this.props.title,
-      // user_id: this.props.store.getUserId(),
-      user_id:'5ca2fb9ea5649e4670277662',
       isLoading: true,
       fundraiser_id: '5cb00ab08c079657cc58691c',
-      fundraiser : {},
-      donate : false,
-      donateError:'',
-      updatefund:0
+      fundraiser : {}
     }
     
   }
-  handleChange = name => event => {
-    this.setState({[name]: event.target.value})
-  }
-  onDonateNow(){
-      const {
-        amount
-      } = this.state
-
-      this.setState({
-        isLoading : true
-      });
-      
-      fetch('http://localhost:5000/api/transaction/addTransaction', {
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          amount: this.state.amount,
-          fundraiser_id: this.state.fundraiser_id,
-          user_id: this.state.user_id
-        }),
-      })
-      // .then((res => res.json())
-      .then(json => {
-        console.log('json', json);
-        if(json.success){
-          this.setState({
-            donateError: json.message,
-            isLoading: false,
-            donate: true,
-            amount : ''
-          });
-          console.log("Donated")
-        }
-        else{
-          this.setState({
-            donateError: json.message,
-            isLoading: false
-          });
-        }
-      }); //add a closing bracket
-      if(this.state.donate == true){
-        const fundraiser = this.state.fundraiser
-        this.state.updatefund = fundraiser.amount + this.state.amount
-      }
-      else{
-
-        const fundraiser = this.state.fundraiser
-        this.state.updatefund = fundraiser.amount
-      }
-    }
-  componentDidMount(){
+  componentWillMount(){
     this.setState({isLoading: false})
       console.log(this.state.fundraiser_id)
       fetch('http://localhost:5000/api/fundraiser/' + this.state.fundraiser_id, {
@@ -104,24 +47,13 @@ class UserAccountDetails extends Component{
         console.log("fundraiser is" + this.state.fundraiser);
         return this.state.fundraiser;
       })
-
-      
     }
   render(){
     const fundraiser = this.state.fundraiser
     console.log(fundraiser)
     console.log(fundraiser._id)
-    if(this.state.donate == true){
-      this.state.updatefund = fundraiser.amount + this.state.amount
-    }
-    else{
-      this.state.updatefund = fundraiser.amount
-    }
-    // console.log(this.state.user_id)
-    // console.log("fund"+ this.state.fund)
-    console.log("user"+ this.state.user_id)
     const title = this.state.title
-    
+
     return(
       <Row>
         <Col md="12">
@@ -156,9 +88,8 @@ class UserAccountDetails extends Component{
                       {title.performanceReportValue}%
                     </span>
                   </Progress>
-                  
                   <strong className="text-muted d-block mb-2">
-                        Amount Needed : {this.state.updatefund}
+                        Amount Needed : {fundraiser.amount}
                   </strong>
                   <Row>
                     <Col md="6">
@@ -166,10 +97,10 @@ class UserAccountDetails extends Component{
                       size="lg" 
                       placeholder="Enter the amount" 
                       name="amount" 
-                      defaultValue={this.state.amount} onChange = {this.handleChange('amount')}/>
+                      defaultValue={this.state.amount} />
                     </Col>
                     <Col md="6">
-                      <Button pill outline size="sm" className="mb-2" onClick = {() => this.onDonateNow()}>
+                      <Button pill outline size="sm" className="mb-2">
                         <i className="material-icons mr-1" size="lg"></i> Donate Now
                       </Button>
                     </Col>

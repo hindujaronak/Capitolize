@@ -54,7 +54,7 @@ export default [
     component: Tables
   },
   {
-    path: "/all-fundraisers",
+    path: "/blog-posts",
     layout: NewLayout,
     component: BlogPosts
   },
