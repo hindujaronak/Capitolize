@@ -2,25 +2,12 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const FundraiserSchema= new Schema({
 
-    title: {
-        type : String,
-        required : true,
-        unique: true
-    },
-    description: {
-        type : String,
-        required : true
-    },
-    sector: {
-        type: Number,
-        required: true
-    },
-    uploaded_image: {
-        type : String
-    },   
+    title: String,
+    description: String,
+    sector: Number,
     createdAt: Date,
     updatedAt: Date,
-    accountType: Number
+    amount: Number
 });
  
 //Create schema

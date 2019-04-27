@@ -17,19 +17,9 @@ export default function() {
       to: "/user-profile-lite",
     },
     {
-      title: "Blog Posts",
+      title: "Fundraisers",
       htmlBefore: '<i class="material-icons">vertical_split</i>',
-      to: "/blog-posts",
-    },
-    {
-      title: "Login",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/login",
-    },
-    {
-      title: "Register",
-      htmlBefore: '<i class="material-icons">error</i>',
-      to: "/register",
+      to: "/all-fundraisers",
     }
   ];
 }
